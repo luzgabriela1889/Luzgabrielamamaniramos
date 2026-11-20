@@ -1,12 +1,70 @@
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Página</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luz Gabriela | Bio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>¡Hola, esta es mi página web!</h1>
-  <p>Estoy aprendiendo a crear páginas en GitHub.</p>
+
+  <main class="contenedor-bio">
+    <!-- Encabezado de perfil -->
+    <header class="perfil-header">
+      <img src="perfil.jpg" alt="Foto de perfil de Luz Gabriela" class="avatar">
+      <h1 class="nombre">Luz Gabriela</h1>
+      <p class="bio-texto">Estudiante de Contabilidad · Creando mi espacio digital</p>
+    </header>
+
+    <!-- Selector rápido de pestañas -->
+    <div class="pestanas-bio">
+      <button class="tab-btn activa" onclick="cambiarTab('enlaces', this)">Enlaces</button>
+      <button class="tab-btn" onclick="cambiarTab('sobre-mi', this)">Sobre mí</button>
+    </div>
+
+    <!-- Pestaña 1: Enlaces estilo tarjeta (tipo nayn.bio) -->
+    <section id="enlaces" class="panel activa">
+      <a href="https://github.com/luzgabriela1889" target="_blank" class="enlace-card">
+        <div>
+          <strong>GitHub</strong>
+          <span>Mis repositorios y proyectos</span>
+        </div>
+        <span class="flecha">→</span>
+      </a>
+
+      <a href="#sobre-mi" onclick="activarPestanaSobreMi(event)" class="enlace-card">
+        <div>
+          <strong>Mi presentación</strong>
+          <span>Conoce un poco más sobre mí</span>
+        </div>
+        <span class="flecha">→</span>
+      </a>
+    </section>
+
+    <!-- Pestaña 2: Sobre mí -->
+    <section id="sobre-mi" class="panel">
+      <div class="caja-texto">
+        <h2>Sobre mí</h2>
+        <p>¡Hola! Soy Luz Gabriela. Aquí puedes contar qué estás estudiando, qué te apasiona o qué proyectos estás armando.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function cambiarTab(id, boton) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('activa'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
+      boton.classList.add('activa');
+    }
+
+    function activarPestanaSobreMi(e) {
+      e.preventDefault();
+      const botones = document.querySelectorAll('.tab-btn');
+      cambiarTab('sobre-mi', botones[1]);
+    }
+  </script>
+
 </body>
 </html>
