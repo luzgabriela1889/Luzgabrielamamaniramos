@@ -3,10 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Gabriela Mamani Ramos</title>
+  <title>Luz Gabriela Mamani Ramos | Bitácora Espacial</title>
   <meta name="description" content="Página web personal de Luz Gabriela Mamani Ramos: biografía, gustos, vida académica, sueños y proyectos, y contacto.">
   <link rel="canonical" href="https://luzgabriela1889.github.io/mipagina/">
   <style>
+    :root {
+      --bg-espacio: #02050e;
+      --panel-oscuro: rgba(7, 13, 28, 0.84);
+      --panel-hover: rgba(18, 29, 54, 0.96);
+      --borde-neon: rgba(56, 189, 248, 0.36);
+      --borde-fuerte: rgba(56, 189, 248, 0.85);
+      --borde-activo: rgba(192, 132, 252, 0.88);
+      --texto-principal: #f8fafc;
+      --texto-secundario: #cbd5e1;
+      --texto-apagado: #94a3b8;
+      --acento-cian: #38bdf8;
+      --acento-violeta: #c084fc;
+      --acento-menta: #5eead4;
+      --sombra-profunda: 0 26px 65px rgba(0, 0, 0, 0.78);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,142 +30,485 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
-      background: #050914;
-      color: #f8fafc;
-      padding: 32px 24px;
+      background-color: var(--bg-espacio);
+      color: var(--texto-principal);
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .portada {
-      max-width: 1150px;
-      margin: 0 auto;
-      min-height: calc(100vh - 64px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-    }
-
-    .izquierda {
-      flex: 1.2;
-    }
-
-    .saludo {
-      font-size: clamp(2rem, 4.5vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.15;
+    ::selection {
+      background: rgba(192, 132, 252, 0.35);
       color: #ffffff;
     }
 
-    .saludo span {
-      color: #7dd3fc;
+    ::-webkit-scrollbar {
+      width: 8px;
     }
 
-    .derecha {
-      flex: 0.8;
-      max-width: 420px;
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.45), rgba(192, 132, 252, 0.45));
+      border-radius: 999px;
+    }
+
+    /* =========================================
+       FONDO ESPACIAL: NEBULOSAS, ESTRELLAS Y REJILLA
+       ========================================= */
+    .fondo-espacial {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(56, 189, 248, 0.25), transparent 42%),
+        radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.26), transparent 46%),
+        radial-gradient(circle at 68% 86%, rgba(94, 234, 212, 0.14), transparent 50%),
+        linear-gradient(155deg, #02040a 0%, #060b19 52%, #02050e 100%);
+    }
+
+    .fondo-espacial::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.7px 1.7px at 12% 18%, rgba(255, 255, 255, 0.92), transparent),
+        radial-gradient(1.1px 1.1px at 28% 68%, rgba(255, 255, 255, 0.72), transparent),
+        radial-gradient(2.1px 2.1px at 45% 32%, rgba(125, 211, 252, 0.92), transparent),
+        radial-gradient(1px 1px at 67% 15%, rgba(255, 255, 255, 0.82), transparent),
+        radial-gradient(1.7px 1.7px at 78% 58%, rgba(216, 180, 254, 0.92), transparent),
+        radial-gradient(1.1px 1.1px at 90% 82%, rgba(255, 255, 255, 0.78), transparent),
+        radial-gradient(1.2px 1.2px at 35% 88%, rgba(94, 234, 212, 0.75), transparent),
+        radial-gradient(1.5px 1.5px at 54% 52%, rgba(255, 255, 255, 0.68), transparent);
+      background-size: 380px 380px;
+      animation: derivaEstrellas 50s linear infinite;
+    }
+
+    @keyframes derivaEstrellas {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-95px);
+      }
+    }
+
+    .fondo-espacial::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
+      -webkit-mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
+    }
+
+    /* Anillos orbitales decorativos */
+    .anillo-orbital {
+      position: fixed;
+      left: -140px;
+      top: 50%;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      border: 1px dashed rgba(56, 189, 248, 0.18);
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: -1;
+      animation: girarAnillo 65s linear infinite;
+    }
+
+    .anillo-orbital::before {
+      content: "";
+      position: absolute;
+      inset: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(192, 132, 252, 0.12);
+    }
+
+    @keyframes girarAnillo {
+      from {
+        transform: translateY(-50%) rotate(0deg);
+      }
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    /* Vistas */
+    .vista {
+      display: none;
+      min-height: 100vh;
       width: 100%;
-      background: #0d1526;
-      border: 1px solid #263859;
-      border-radius: 18px;
-      padding: 20px;
     }
 
-    .menu-titulo {
-      font-size: 0.85rem;
+    .vista.activa {
+      display: flex;
+    }
+
+    /* =========================================
+       PORTADA ASIMÉTRICA: IZQUIERDA / DERECHA
+       ========================================= */
+    .portada-layout {
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      padding: 3rem 5%;
+    }
+
+    .lado-izquierdo {
+      flex: 1.25;
+      max-width: 750px;
+    }
+
+    .etiqueta-orbital {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #c084fc;
-      margin-bottom: 12px;
+      color: var(--acento-menta);
+      border: 1px solid rgba(94, 234, 212, 0.42);
+      background: rgba(94, 234, 212, 0.08);
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      margin-bottom: 1.35rem;
+      box-shadow: 0 0 22px rgba(94, 234, 212, 0.14);
+    }
+
+    .punto-pulso {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acento-menta);
+      box-shadow: 0 0 12px var(--acento-menta);
+      animation: latido 2.2s infinite ease-in-out;
+    }
+
+    @keyframes latido {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.35);
+        opacity: 0.65;
+      }
+    }
+
+    .saludo-grande {
+      font-size: clamp(2.25rem, 4.7vw, 4.15rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      text-shadow: 0 0 40px rgba(56, 189, 248, 0.24);
+    }
+
+    .saludo-grande span {
+      background: linear-gradient(95deg, #7dd3fc 0%, #c084fc 55%, #5eead4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .linea-decorativa {
+      margin-top: 1.6rem;
+      width: 140px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--acento-cian), var(--acento-violeta), transparent);
+    }
+
+    /* Panel derecho de botones */
+    .lado-derecho {
+      flex: 0.85;
+      max-width: 445px;
+      width: 100%;
+      background: var(--panel-oscuro);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--borde-neon);
+      border-radius: 24px;
+      padding: 1.55rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        var(--sombra-profunda),
+        0 0 36px rgba(56, 189, 248, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .lado-derecho:hover {
+      border-color: rgba(56, 189, 248, 0.58);
+      box-shadow:
+        var(--sombra-profunda),
+        0 0 44px rgba(56, 189, 248, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .lado-derecho::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--acento-cian), var(--acento-violeta), transparent);
+    }
+
+    .cabecera-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .titulo-menu {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--acento-violeta);
       font-weight: 700;
     }
 
-    .botones {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .contador-sectores {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--texto-apagado);
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
     }
 
-    .btn-pestana {
+    .lista-botones {
+      display: flex;
+      flex-direction: column;
+      gap: 0.56rem;
+    }
+
+    .btn-seccion {
       width: 100%;
-      padding: 11px 14px;
-      border-radius: 10px;
-      border: 1px solid #2b3f63;
-      background: #142038;
-      color: #ffffff;
-      font-size: 0.95rem;
+      background: rgba(13, 21, 39, 0.84);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 13px;
+      padding: 0.76rem 1rem;
+      color: var(--texto-principal);
+      font-size: 0.94rem;
       font-weight: 600;
       text-align: left;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  background 0.2s ease,
+                  box-shadow 0.2s ease;
     }
 
-    .btn-pestana:hover {
-      background: #1e3154;
-      border-color: #7dd3fc;
+    .btn-seccion::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--acento-cian), var(--acento-violeta));
+      opacity: 0;
+      transition: opacity 0.2s ease;
     }
 
-    .seccion-activa {
+    .btn-seccion:hover {
+      transform: translateX(-5px);
+      background: var(--panel-hover);
+      border-color: var(--borde-fuerte);
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.26);
+    }
+
+    .btn-seccion:hover::before {
+      opacity: 1;
+    }
+
+    .btn-seccion:active {
+      transform: translateX(-2px) scale(0.99);
+    }
+
+    .btn-numero {
+      color: var(--acento-cian);
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-right: 0.42rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn-flecha {
+      color: var(--acento-violeta);
+      font-size: 1rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-seccion:hover .btn-flecha {
+      transform: translateX(3px);
+      color: var(--acento-cian);
+    }
+
+    /* =========================================
+       VISTA DE PESTAÑA ABIERTA
+       ========================================= */
+    .vista-pestana {
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+
+    .caja-pestana {
+      width: 100%;
       max-width: 760px;
-      margin: 0 auto;
-      background: #0d1526;
-      border: 1px solid #6d28d9;
-      border-radius: 18px;
-      padding: 24px;
+      background: var(--panel-oscuro);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--borde-activo);
+      border-radius: 26px;
+      padding: 2rem 2.1rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        var(--sombra-profunda),
+        0 0 40px rgba(192, 132, 252, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .caja-pestana::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--acento-violeta), var(--acento-cian), var(--acento-menta));
+    }
+
+    .barra-superior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1.55rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      flex-wrap: wrap;
     }
 
     .btn-volver {
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid #7dd3fc;
-      background: #142038;
-      color: #ffffff;
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--texto-principal);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 11px;
+      padding: 0.55rem 1.05rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
-      margin-bottom: 18px;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .contenido-pestana {
+    .btn-volver:hover {
+      background: rgba(56, 189, 248, 0.28);
+      border-color: var(--acento-cian);
+      transform: translateX(-2px);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
+    }
+
+    .etiqueta-sector {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--acento-cian);
+      background: rgba(56, 189, 248, 0.11);
+      border: 1px solid rgba(56, 189, 248, 0.34);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+    }
+
+    .pestana-contenido {
       display: none;
     }
 
-    .contenido-pestana.visible {
+    .pestana-contenido.activa {
       display: block;
+      animation: aparecer 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .contenido-pestana h2 {
-      font-size: 1.7rem;
-      color: #e9d5ff;
-      margin-bottom: 12px;
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .contenido-pestana p {
-      color: #cbd5e1;
-      line-height: 1.6;
-      margin-bottom: 10px;
+    .pestana-contenido h2 {
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #f3e8ff, #7dd3fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.9rem;
     }
 
-    .contenido-pestana a {
-      color: #7dd3fc;
+    .pestana-contenido p {
+      color: var(--texto-secundario);
+      font-size: 1rem;
+      line-height: 1.68;
+      margin-bottom: 1rem;
+    }
+
+    .pestana-contenido a {
+      color: var(--acento-cian);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.45);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .pestana-contenido a:hover {
+      color: #bae6fd;
+      border-bottom-color: #bae6fd;
     }
 
     .lista-juegos {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 8px;
+      gap: 0.85rem;
+      margin-top: 0.6rem;
     }
 
     .lista-juegos li {
-      background: #142038;
-      border: 1px solid #2b3f63;
-      border-radius: 12px;
-      padding: 14px 16px;
+      background: rgba(13, 21, 39, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 0.95rem 1.15rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
@@ -158,135 +517,92 @@
       font-size: 1rem;
     }
 
-    .lista-juegos a {
-      color: #7dd3fc;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .lista-juegos a:hover {
-      text-decoration: underline;
-    }
-
-    .oculto {
-      display: none;
-    }
-
-    @media (max-width: 860px) {
-      .portada {
+    @media (max-width: 900px) {
+      .portada-layout {
         flex-direction: column;
-        align-items: flex-start;
         justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 2.2rem 1.3rem;
       }
 
-      .derecha {
+      .lado-derecho {
         max-width: 100%;
+      }
+
+      .anillo-orbital {
+        width: 340px;
+        height: 340px;
+        left: -130px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .caja-pestana {
+        padding: 1.4rem;
+        border-radius: 20px;
+      }
+
+      .pestana-contenido h2 {
+        font-size: 1.45rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <main id="vista-portada" class="portada">
-    <div class="izquierda">
-      <h1 class="saludo">
+  <div class="fondo-espacial" aria-hidden="true"></div>
+  <div class="anillo-orbital" aria-hidden="true"></div>
+
+  <!-- =========================================
+       PORTADA PRINCIPAL
+       ========================================= -->
+  <section id="vista-portada" class="vista portada-layout activa">
+    <div class="lado-izquierdo">
+      <span class="etiqueta-orbital">
+        <span class="punto-pulso"></span>
+        Bitácora Personal · Órbita 2026
+      </span>
+      <h1 class="saludo-grande">
         Hola. Mi nombre es <span>Luz Gabriela Mamani Ramos</span> esta es mi pagina web personal.
       </h1>
+      <div class="linea-decorativa" aria-hidden="true"></div>
     </div>
 
-    <aside class="derecha">
-      <p class="menu-titulo">Pestañas</p>
-      <div class="botones">
-        <button type="button" class="btn-pestana" onclick="abrirPestana('sobre-mi')">01. Sobre mí (Biografía)</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('musica')">02. Música favorita</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('libros')">03. Libros favoritos</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('peliculas-series')">04. Películas y series favoritas</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('videojuegos')">05. Videojuegos favoritos</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('vida-academica')">06. Vida académica</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('suenos-proyectos')">07. Sueños y proyectos</button>
-        <button type="button" class="btn-pestana" onclick="abrirPestana('redes-contactos')">08. Redes y contactos</button>
+    <aside class="lado-derecho" aria-label="Menú de secciones">
+      <div class="cabecera-menu">
+        <p class="titulo-menu">Explorar pestañas</p>
+        <span class="contador-sectores">08 SECTORES</span>
       </div>
-    </aside>
-  </main>
+      <div class="lista-botones">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('sobre-mi', 'Sector 01')">
+          <span><span class="btn-numero">01</span> Sobre mí (Biografía)</span>
+          <span class="btn-flecha">→</span>
+        </button>
 
-  <section id="vista-contenido" class="seccion-activa oculto">
-    <button type="button" class="btn-volver" onclick="volverPortada()">← Volver al inicio</button>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('musica', 'Sector 02')">
+          <span><span class="btn-numero">02</span> Música favorita</span>
+          <span class="btn-flecha">→</span>
+        </button>
 
-    <div id="pestana-sobre-mi" class="contenido-pestana">
-      <h2>Sobre mí (Biografía)</h2>
-      <p>Escribe aquí tu biografía.</p>
-    </div>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('libros', 'Sector 03')">
+          <span><span class="btn-numero">03</span> Libros favoritos</span>
+          <span class="btn-flecha">→</span>
+        </button>
 
-    <div id="pestana-musica" class="contenido-pestana">
-      <h2>Música favorita</h2>
-      <p>Escribe aquí tu música favorita.</p>
-    </div>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('peliculas-series', 'Sector 04')">
+          <span><span class="btn-numero">04</span> Películas y series favoritas</span>
+          <span class="btn-flecha">→</span>
+        </button>
 
-    <div id="pestana-libros" class="contenido-pestana">
-      <h2>Libros favoritos</h2>
-      <p>Escribe aquí tus libros favoritos.</p>
-    </div>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('videojuegos', 'Sector 05')">
+          <span><span class="btn-numero">05</span> Videojuegos favoritos</span>
+          <span class="btn-flecha">→</span>
+        </button>
 
-    <div id="pestana-peliculas-series" class="contenido-pestana">
-      <h2>Películas y series favoritas</h2>
-      <p>Escribe aquí tus películas y series favoritas.</p>
-    </div>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sector 06')">
+          <span><span class="btn-numero">06</span> Vida académica</span>
+          <span class="btn-flecha">→</span>
+        </button>
 
-    <div id="pestana-videojuegos" class="contenido-pestana">
-      <h2>Videojuegos favoritos</h2>
-      <p>Algunos de mis videojuegos favoritos y sus páginas:</p>
-      <ul class="lista-juegos">
-        <li>
-          <strong>Hollow Knight</strong>
-          <a href="https://www.hollowknight.com/" target="_blank" rel="noopener noreferrer">Sitio oficial de Hollow Knight →</a>
-        </li>
-        <li>
-          <strong>Left 4 Dead</strong>
-          <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank" rel="noopener noreferrer">Página de Left 4 Dead en Steam →</a>
-        </li>
-        <li>
-          <strong>World of Warcraft</strong>
-          <a href="https://worldofwarcraft.blizzard.com/" target="_blank" rel="noopener noreferrer">Sitio oficial de World of Warcraft →</a>
-        </li>
-      </ul>
-    </div>
-
-    <div id="pestana-vida-academica" class="contenido-pestana">
-      <h2>Vida académica</h2>
-      <p>Escribe aquí tu información académica.</p>
-    </div>
-
-    <div id="pestana-suenos-proyectos" class="contenido-pestana">
-      <h2>Sueños y proyectos</h2>
-      <p>Escribe aquí tus sueños y proyectos.</p>
-    </div>
-
-    <div id="pestana-redes-contactos" class="contenido-pestana">
-      <h2>Redes y contactos</h2>
-      <p>GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
-    </div>
-  </section>
-
-  <script>
-    function abrirPestana(id) {
-      document.getElementById('vista-portada').classList.add('oculto');
-      document.getElementById('vista-contenido').classList.remove('oculto');
-
-      document.querySelectorAll('.contenido-pestana').forEach(function (caja) {
-        caja.classList.remove('visible');
-      });
-
-      var elegida = document.getElementById('pestana-' + id);
-      if (elegida) {
-        elegida.classList.add('visible');
-      }
-    }
-
-    function volverPortada() {
-      document.getElementById('vista-contenido').classList.add('oculto');
-      document.getElementById('vista-portada').classList.remove('oculto');
-    }
-  </script>
-
-</body>
-</html>
+        <button type="
