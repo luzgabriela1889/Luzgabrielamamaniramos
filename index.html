@@ -15,7 +15,7 @@
       --borde-fuerte: rgba(56, 189, 248, 0.85);
       --borde-activo: rgba(192, 132, 252, 0.88);
       --texto-principal: #f8fafc;
-      --texto-secundario: #cbd5e1;
+      --texto-secundario: #e2e8f0;
       --texto-apagado: #94a3b8;
       --acento-cian: #38bdf8;
       --acento-violeta: #c084fc;
@@ -23,7 +23,7 @@
       --sombra-profunda: 0 26px 65px rgba(0, 0, 0, 0.78);
     }
 
-    * {
+    - {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -357,7 +357,7 @@
 
     .caja-pestana {
       width: 100%;
-      max-width: 760px;
+      max-width: 820px;
       background: var(--panel-oscuro);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -390,6 +390,8 @@
       margin-bottom: 1.55rem;
       border-bottom: 1px solid rgba(148, 163, 184, 0.2);
       flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
     }
 
     .btn-volver {
@@ -421,6 +423,7 @@
 
     .pestana-contenido {
       display: none;
+      position: relative;
     }
 
     .pestana-contenido.activa {
@@ -439,20 +442,89 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .pestana-contenido p {
+    /* =========================================
+       SECCIÓN 1: IMÁGENES DIFUMINADAS ALREDEDOR SIN TAPAR TEXTO
+       ========================================= */
+    .escenario-sobre-mi {
+      position: relative;
+      border-radius: 20px;
+      padding: 1.4rem;
+      overflow: hidden;
+      background: rgba(5, 10, 22, 0.62);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .marco-difuminado-alrededor {
+      position: relative;
+      display: grid;
+      grid-template-columns: 112px 1fr 112px;
+      grid-template-rows: auto auto auto;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .img-borde {
+      width: 100%;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 16px;
+      filter: blur(2.6px) saturate(1.1);
+      opacity: 0.44;
+      -webkit-mask-image: radial-gradient(ellipse at center, black 48%, transparent 92%);
+      mask-image: radial-gradient(ellipse at center, black 48%, transparent 92%);
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .fila-superior-imgs,
+    .fila-inferior-imgs {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+    }
+
+    .columna-lateral-imgs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .texto-biografia-limpio {
+      position: relative;
+      z-index: 3;
+      background: rgba(7, 13, 28, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 16px;
+      padding: 1.35rem 1.45rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .texto-biografia-limpio p {
       color: var(--texto-secundario);
       font-size: 1rem;
-      line-height: 1.68;
-      margin-bottom: 1rem;
+      line-height: 1.75;
+      margin-bottom: 0;
     }
 
     .pestana-contenido a {
       color: var(--acento-cian);
       text-decoration: none;
-      border-bottom: 1px solid rgba(56, 189, 248, 0.45);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.48);
+      font-weight: 600;
+    }
+
+    .pestana-contenido a:hover {
+      color: #7dd3fc;
+      border-bottom-color: #7dd3fc;
     }
 
     .lista-juegos {
@@ -491,6 +563,25 @@
 
       .lado-derecho {
         max-width: 100%;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .marco-difuminado-alrededor {
+        grid-template-columns: 1fr;
+      }
+
+      .columna-lateral-imgs {
+        flex-direction: row;
+      }
+
+      .fila-superior-imgs,
+      .fila-inferior-imgs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .img-borde {
+        height: 78px;
       }
     }
   </style>
@@ -589,9 +680,52 @@
       <!-- 1. Sobre mí (Biografía) -->
       <div id="pestana-sobre-mi" class="pestana-contenido">
         <h2>Sobre mí (Biografía)</h2>
-        <p>¡Hola! Soy del Perú y estudio Contabilidad en la Universidad Católica San Pablo, en Arequipa. Nací en Ayaviri, Puno, y crecí en una familia pequeña pero muy unida junto a mis padres, Simeón y Luz Mercedes, y mi hermana menor, de 13 años. A pesar de los retos del camino, siempre hemos mantenido la alegría y el apoyo mutuo.
 
-Estudié la primaria y secundaria en el colegio privado Corazón de Jesús, una etapa que guardo con cariño, aunque mudarme a Arequipa para empezar la universidad marcó un antes y un después en mi vida. Descubrir una nueva ciudad y conocer gente distinta me abrió las puertas a seguir creciendo; hoy disfruto mucho esta etapa y me ilusiona seguir explorando nuevos lugares. Fuera de los libros, me recargan los paisajes, la naturaleza, los animales y esos ratos de soledad.</p>
+        <div class="escenario-sobre-mi">
+          <div class="marco-difuminado-alrededor">
+            <!-- Fila superior difuminada -->
+            <div class="fila-superior-imgs" aria-hidden="true">
+              <img src="Ciudad%20secci%C3%B3n%201.jpg" alt="" class="img-borde">
+              <img src="Familia%20Secci%C3%B3n%201.jpeg" alt="" class="img-borde">
+              <img src="Arequipa%20seccion%201.webp" alt="" class="img-borde">
+            </div>
+
+            <!-- Columna izquierda difuminada -->
+            <div class="columna-lateral-imgs" aria-hidden="true">
+              <img src="universidad%20secci%C3%B3n%201.jpg" alt="" class="img-borde">
+              <img src="paisaje%201%20seccion%201.jpg" alt="" class="img-borde">
+            </div>
+
+            <!-- Centro: texto limpio y legible -->
+            <div class="texto-biografia-limpio">
+              <p>
+                Soy del Perú y actualmente estudio Contabilidad en la
+                <a href="https://ucsp.edu.pe/" target="_blank" rel="noopener noreferrer">Universidad Católica San Pablo</a>,
+                en <a href="https://es.wikipedia.org/wiki/Arequipa" target="_blank" rel="noopener noreferrer">Arequipa</a>.
+                Nací el 8 de agosto de 2007 en el departamento de Puno, específicamente en
+                <a href="https://es.wikipedia.org/wiki/Ayaviri_(Melgar)" target="_blank" rel="noopener noreferrer">Ayaviri</a>,
+                una tierra de altura con mucha identidad. Mi familia es pequeña, pero muy unida: está formada por mis padres, Simeón Mamani Limache y Luz Mercedes Ramos Zúñiga, y por mi hermana menor, de 13 años. A pesar de las dificultades y de todo lo que ha tocado vivir, siempre hemos sabido encontrar alegría y apoyo mutuo.
+                <br><br>
+                Cursé mi primaria y secundaria en el
+                <a href="https://colegiosperu.pe/puno/ayaviri-puno/colegios-privados/corazon-de-jesus-ayaviri-puno-primaria/" target="_blank" rel="noopener noreferrer">colegio privado Corazón de Jesús</a>.
+                Fue una etapa bonita a su manera, llena de aprendizajes y recuerdos, pero nada se compara con el día en que dejé Puno para iniciar mi vida universitaria en Arequipa. Todo era nuevo para mí: otra ciudad, nuevos caminos y personas distintas. Hoy disfruto mucho esta etapa de crecimiento; de hecho, no me gustaría volver a radicar en Puno y sueño con seguir conociendo y explorando nuevos lugares. Me inspiran profundamente los paisajes abiertos, la naturaleza, los animales y esos momentos de quietud y soledad.
+              </p>
+            </div>
+
+            <!-- Columna derecha difuminada -->
+            <div class="columna-lateral-imgs" aria-hidden="true">
+              <img src="paisaje%202%20seccion%201.jpg" alt="" class="img-borde">
+              <img src="animal%201%20secci%C3%B3n%201.jpg" alt="" class="img-borde">
+            </div>
+
+            <!-- Fila inferior difuminada -->
+            <div class="fila-inferior-imgs" aria-hidden="true">
+              <img src="animal%202%20secci%C3%B3n%201.jpg" alt="" class="img-borde">
+              <img src="paisaje%201%20seccion%201.jpg" alt="" class="img-borde">
+              <img src="Arequipa%20seccion%201.webp" alt="" class="img-borde">
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 2. Música favorita -->
