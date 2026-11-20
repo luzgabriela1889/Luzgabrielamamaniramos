@@ -6,15 +6,19 @@
   <title>Luz Gabriela Mamani Ramos | Bitácora Espacial</title>
   <style>
     :root {
-      --bg-espacio: #030610;
-      --panel-oscuro: rgba(7, 13, 27, 0.82);
-      --borde-neon: rgba(56, 189, 248, 0.38);
-      --borde-activo: rgba(192, 132, 252, 0.85);
+      --bg-espacio: #02050e;
+      --panel-oscuro: rgba(7, 13, 28, 0.84);
+      --panel-hover: rgba(18, 29, 54, 0.96);
+      --borde-neon: rgba(56, 189, 248, 0.36);
+      --borde-fuerte: rgba(56, 189, 248, 0.85);
+      --borde-activo: rgba(192, 132, 252, 0.88);
       --texto-principal: #f8fafc;
       --texto-secundario: #cbd5e1;
+      --texto-apagado: #94a3b8;
       --acento-cian: #38bdf8;
       --acento-violeta: #c084fc;
       --acento-menta: #5eead4;
+      --sombra-profunda: 0 26px 65px rgba(0, 0, 0, 0.78);
     }
 
     * {
@@ -24,12 +28,36 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       background-color: var(--bg-espacio);
       color: var(--texto-principal);
       overflow-x: hidden;
       position: relative;
+      selection-background-color: rgba(192, 132, 252, 0.35);
+    }
+
+    ::selection {
+      background: rgba(192, 132, 252, 0.35);
+      color: #ffffff;
+    }
+
+    /* Scrollbar sutil espacial */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.45), rgba(192, 132, 252, 0.45));
+      border-radius: 999px;
     }
 
     /* =========================================
@@ -40,10 +68,10 @@
       inset: 0;
       z-index: -3;
       background:
-        radial-gradient(circle at 16% 24%, rgba(56, 189, 248, 0.24), transparent 42%),
-        radial-gradient(circle at 84% 18%, rgba(168, 85, 247, 0.25), transparent 46%),
-        radial-gradient(circle at 65% 85%, rgba(94, 234, 212, 0.12), transparent 48%),
-        linear-gradient(155deg, #02040a 0%, #060b19 52%, #030610 100%);
+        radial-gradient(circle at 15% 25%, rgba(56, 189, 248, 0.25), transparent 42%),
+        radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.26), transparent 46%),
+        radial-gradient(circle at 68% 86%, rgba(94, 234, 212, 0.14), transparent 50%),
+        linear-gradient(155deg, #02040a 0%, #060b19 52%, #02050e 100%);
     }
 
     .fondo-espacial::before {
@@ -51,16 +79,16 @@
       position: absolute;
       inset: 0;
       background-image:
-        radial-gradient(1.6px 1.6px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
-        radial-gradient(1px 1px at 28% 68%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(2px 2px at 45% 32%, rgba(125, 211, 252, 0.9), transparent),
-        radial-gradient(1px 1px at 67% 15%, rgba(255, 255, 255, 0.8), transparent),
-        radial-gradient(1.6px 1.6px at 78% 58%, rgba(216, 180, 254, 0.9), transparent),
-        radial-gradient(1px 1px at 90% 82%, rgba(255, 255, 255, 0.75), transparent),
-        radial-gradient(1px 1px at 35% 88%, rgba(94, 234, 212, 0.7), transparent),
-        radial-gradient(1.5px 1.5px at 54% 52%, rgba(255, 255, 255, 0.65), transparent);
-      background-size: 400px 400px;
-      animation: derivaEstrellas 45s linear infinite;
+        radial-gradient(1.7px 1.7px at 12% 18%, rgba(255, 255, 255, 0.92), transparent),
+        radial-gradient(1.1px 1.1px at 28% 68%, rgba(255, 255, 255, 0.72), transparent),
+        radial-gradient(2.1px 2.1px at 45% 32%, rgba(125, 211, 252, 0.92), transparent),
+        radial-gradient(1px 1px at 67% 15%, rgba(255, 255, 255, 0.82), transparent),
+        radial-gradient(1.7px 1.7px at 78% 58%, rgba(216, 180, 254, 0.92), transparent),
+        radial-gradient(1.1px 1.1px at 90% 82%, rgba(255, 255, 255, 0.78), transparent),
+        radial-gradient(1.2px 1.2px at 35% 88%, rgba(94, 234, 212, 0.75), transparent),
+        radial-gradient(1.5px 1.5px at 54% 52%, rgba(255, 255, 255, 0.68), transparent);
+      background-size: 380px 380px;
+      animation: derivaEstrellas 50s linear infinite;
     }
 
     @keyframes derivaEstrellas {
@@ -68,7 +96,7 @@
         transform: translateY(0px);
       }
       to {
-        transform: translateY(-80px);
+        transform: translateY(-95px);
       }
     }
 
@@ -77,26 +105,34 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to right, rgba(56, 189, 248, 0.055) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(56, 189, 248, 0.055) 1px, transparent 1px);
-      background-size: 64px 64px;
+        linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
       mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
       -webkit-mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
     }
 
-    /* Anillo orbital decorativo sutil */
+    /* Anillos orbitales decorativos */
     .anillo-orbital {
       position: fixed;
-      left: -120px;
+      left: -140px;
       top: 50%;
-      width: 540px;
-      height: 540px;
+      width: 560px;
+      height: 560px;
       border-radius: 50%;
-      border: 1px dashed rgba(56, 189, 248, 0.16);
+      border: 1px dashed rgba(56, 189, 248, 0.18);
       transform: translateY(-50%);
       pointer-events: none;
       z-index: -1;
-      animation: girarAnillo 60s linear infinite;
+      animation: girarAnillo 65s linear infinite;
+    }
+
+    .anillo-orbital::before {
+      content: "";
+      position: absolute;
+      inset: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(192, 132, 252, 0.12);
     }
 
     @keyframes girarAnillo {
@@ -131,40 +167,52 @@
 
     .lado-izquierdo {
       flex: 1.25;
-      max-width: 740px;
+      max-width: 750px;
     }
 
     .etiqueta-orbital {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--acento-menta);
-      border: 1px solid rgba(94, 234, 212, 0.4);
+      border: 1px solid rgba(94, 234, 212, 0.42);
       background: rgba(94, 234, 212, 0.08);
-      padding: 0.38rem 0.9rem;
+      padding: 0.4rem 0.95rem;
       border-radius: 999px;
-      margin-bottom: 1.3rem;
-      box-shadow: 0 0 20px rgba(94, 234, 212, 0.12);
+      margin-bottom: 1.35rem;
+      box-shadow: 0 0 22px rgba(94, 234, 212, 0.14);
     }
 
     .punto-pulso {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--acento-menta);
-      box-shadow: 0 0 10px var(--acento-menta);
+      box-shadow: 0 0 12px var(--acento-menta);
+      animation: latido 2.2s infinite ease-in-out;
+    }
+
+    @keyframes latido {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.35);
+        opacity: 0.65;
+      }
     }
 
     .saludo-grande {
-      font-size: clamp(2.25rem, 4.7vw, 4.1rem);
+      font-size: clamp(2.25rem, 4.7vw, 4.15rem);
       font-weight: 800;
       line-height: 1.1;
       letter-spacing: -0.028em;
-      text-shadow: 0 0 38px rgba(56, 189, 248, 0.22);
+      text-shadow: 0 0 40px rgba(56, 189, 248, 0.24);
     }
 
     .saludo-grande span {
@@ -174,23 +222,40 @@
       color: transparent;
     }
 
+    .linea-decorativa {
+      margin-top: 1.6rem;
+      width: 140px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--acento-cian), var(--acento-violeta), transparent);
+    }
+
     /* Panel derecho de botones */
     .lado-derecho {
       flex: 0.85;
-      max-width: 440px;
+      max-width: 445px;
       width: 100%;
       background: var(--panel-oscuro);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--borde-neon);
       border-radius: 24px;
       padding: 1.55rem;
       position: relative;
       overflow: hidden;
       box-shadow:
-        0 24px 55px rgba(0, 0, 0, 0.72),
-        0 0 35px rgba(56, 189, 248, 0.12),
+        var(--sombra-profunda),
+        0 0 36px rgba(56, 189, 248, 0.13),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .lado-derecho:hover {
+      border-color: rgba(56, 189, 248, 0.58);
+      box-shadow:
+        var(--sombra-profunda),
+        0 0 44px rgba(56, 189, 248, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .lado-derecho::before {
@@ -203,19 +268,33 @@
       background: linear-gradient(90deg, transparent, var(--acento-cian), var(--acento-violeta), transparent);
     }
 
+    .cabecera-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
     .titulo-menu {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--acento-violeta);
       font-weight: 700;
-      margin-bottom: 1rem;
+    }
+
+    .contador-sectores {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--texto-apagado);
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
     }
 
     .lista-botones {
       display: flex;
       flex-direction: column;
-      gap: 0.58rem;
+      gap: 0.56rem;
     }
 
     .btn-seccion {
@@ -229,326 +308,17 @@
       font-weight: 600;
       text-align: left;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  background 0.2s ease,
+                  box-shadow 0.2s ease;
     }
 
-    .btn-seccion:hover {
-      transform: translateX(-5px);
-      background: rgba(24, 36, 64, 0.96);
-      border-color: var(--acento-cian);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.26);
-    }
-
-    .btn-numero {
-      color: var(--acento-cian);
-      font-size: 0.82rem;
-      font-weight: 800;
-      margin-right: 0.4rem;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .btn-flecha {
-      color: var(--acento-violeta);
-      font-size: 1rem;
-      transition: transform 0.2s ease;
-    }
-
-    .btn-seccion:hover .btn-flecha {
-      transform: translateX(3px);
-      color: var(--acento-cian);
-    }
-
-    /* =========================================
-       VISTA DE PESTAÑA ABIERTA
-       ========================================= */
-    .vista-pestana {
-      align-items: center;
-      justify-content: center;
-      padding: 2.5rem 1.25rem;
-    }
-
-    .caja-pestana {
-      width: 100%;
-      max-width: 760px;
-      background: var(--panel-oscuro);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--borde-activo);
-      border-radius: 26px;
-      padding: 2rem 2.1rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow:
-        0 26px 65px rgba(0, 0, 0, 0.78),
-        0 0 38px rgba(192, 132, 252, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .caja-pestana::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--acento-violeta), var(--acento-cian), var(--acento-menta));
-    }
-
-    .barra-superior {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding-bottom: 1.2rem;
-      margin-bottom: 1.55rem;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-      flex-wrap: wrap;
-    }
-
-    .btn-volver {
-      background: rgba(56, 189, 248, 0.14);
-      color: var(--texto-principal);
-      border: 1px solid rgba(56, 189, 248, 0.5);
-      border-radius: 11px;
-      padding: 0.55rem 1.05rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-volver:hover {
-      background: rgba(56, 189, 248, 0.26);
-      transform: translateX(-2px);
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
-    }
-
-    .etiqueta-sector {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--acento-cian);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.28rem 0.75rem;
-      border-radius: 999px;
-    }
-
-    .pestana-contenido {
-      display: none;
-    }
-
-    .pestana-contenido.activa {
-      display: block;
-      animation: aparecer 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @keyframes aparecer {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .pestana-contenido h2 {
-      font-size: 1.8rem;
-      background: linear-gradient(90deg, #f3e8ff, #7dd3fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.9rem;
-    }
-
-    .pestana-contenido p {
-      color: var(--texto-secundario);
-      font-size: 1rem;
-      line-height: 1.68;
-      margin-bottom: 1rem;
-    }
-
-    .pestana-contenido a {
-      color: var(--acento-cian);
-    }
-
-    @media (max-width: 900px) {
-      .portada-layout {
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 2rem;
-      }
-
-      .lado-derecho {
-        max-width: 100%;
-      }
-
-      .anillo-orbital {
-        width: 340px;
-        height: 340px;
-        left: -130px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="fondo-espacial" aria-hidden="true"></div>
-  <div class="anillo-orbital" aria-hidden="true"></div>
-
-  <!-- =========================================
-       PORTADA PRINCIPAL
-       ========================================= -->
-  <section id="vista-portada" class="vista portada-layout activa">
-    <div class="lado-izquierdo">
-      <span class="etiqueta-orbital">
-        <span class="punto-pulso"></span>
-        Bitácora Personal · Órbita 2026
-      </span>
-      <h1 class="saludo-grande">
-        Hola. Mi nombre es <span>Luz Gabriela Mamani Ramos</span> esta es mi pagina web personal.
-      </h1>
-    </div>
-
-    <aside class="lado-derecho" aria-label="Menú de secciones">
-      <p class="titulo-menu">Explorar pestañas</p>
-      <div class="lista-botones">
-        <button type="button" class="btn-seccion" onclick="abrirPestana('sobre-mi', 'Sector 01')">
-          <span><span class="btn-numero">01</span> Sobre mí (Biografía)</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('musica', 'Sector 02')">
-          <span><span class="btn-numero">02</span> Música favorita</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('libros', 'Sector 03')">
-          <span><span class="btn-numero">03</span> Libros favoritos</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('peliculas-series', 'Sector 04')">
-          <span><span class="btn-numero">04</span> Películas y series favoritas</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('videojuegos', 'Sector 05')">
-          <span><span class="btn-numero">05</span> Videojuegos favoritos</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sector 06')">
-          <span><span class="btn-numero">06</span> Vida académica</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('suenos-proyectos', 'Sector 07')">
-          <span><span class="btn-numero">07</span> Sueños y proyectos</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('redes-contactos', 'Sector 08')">
-          <span><span class="btn-numero">08</span> Redes y contactos</span>
-          <span class="btn-flecha">→</span>
-        </button>
-      </div>
-    </aside>
-  </section>
-
-  <!-- =========================================
-       VISTA DE CADA PESTAÑA
-       ========================================= -->
-  <section id="vista-pestana" class="vista vista-pestana">
-    <div class="caja-pestana">
-      <div class="barra-superior">
-        <button type="button" class="btn-volver" onclick="volverPortada()">← Volver a la portada</button>
-        <span id="etiqueta-sector" class="etiqueta-sector">Sector 01</span>
-      </div>
-
-      <!-- 1. Sobre mí (Biografía) -->
-      <div id="pestana-sobre-mi" class="pestana-contenido">
-        <h2>Sobre mí (Biografía)</h2>
-        <p>¡Hola! Soy Luz Gabriela Mamani Ramos. Aquí puedes escribir tu biografía, quién eres, de dónde vienes y qué te define.</p>
-      </div>
-
-      <!-- 2. Música favorita -->
-      <div id="pestana-musica" class="pestana-contenido">
-        <h2>Música favorita</h2>
-        <p>Aquí puedes compartir tus canciones, artistas, bandas o géneros musicales favoritos.</p>
-      </div>
-
-      <!-- 3. Libros favoritos -->
-      <div id="pestana-libros" class="pestana-contenido">
-        <h2>Libros favoritos</h2>
-        <p>Aquí puedes anotar los libros o lecturas que más te han marcado o que estás leyendo.</p>
-      </div>
-
-      <!-- 4. Películas y series favoritas -->
-      <div id="pestana-peliculas-series" class="pestana-contenido">
-        <h2>Películas y series favoritas</h2>
-        <p>Aquí puedes listar tus películas y series preferidas o tus recomendaciones.</p>
-      </div>
-
-      <!-- 5. Videojuegos favoritos -->
-      <div id="pestana-videojuegos" class="pestana-contenido">
-        <h2>Videojuegos favoritos</h2>
-        <p>Aquí puedes contar cuáles son tus videojuegos favoritos y qué te gusta de ellos.</p>
-      </div>
-
-      <!-- 6. Vida académica -->
-      <div id="pestana-vida-academica" class="pestana-contenido">
-        <h2>Vida académica</h2>
-        <p>Aquí puedes compartir tu formación, tus materias o temas de estudio y tus metas académicas.</p>
-      </div>
-
-      <!-- 7. Sueños y proyectos -->
-      <div id="pestana-suenos-proyectos" class="pestana-contenido">
-        <h2>Sueños y proyectos</h2>
-        <p>Aquí puedes escribir tus metas a futuro, los sueños que quieres cumplir y los proyectos en los que estás trabajando.</p>
-      </div>
-
-      <!-- 8. Redes y contactos -->
-      <div id="pestana-redes-contactos" class="pestana-contenido">
-        <h2>Redes y contactos</h2>
-        <p>GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
-        <p>Aquí puedes añadir tus demás redes sociales o medios de contacto.</p>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    function abrirPestana(nombrePestana, textoSector) {
-      document.getElementById('vista-portada').classList.remove('activa');
-      document.getElementById('vista-pestana').classList.add('activa');
-
-      document.getElementById('etiqueta-sector').textContent = textoSector || 'Sección';
-
-      document.querySelectorAll('.pestana-contenido').forEach(el => {
-        el.classList.remove('activa');
-      });
-
-      const objetivo = document.getElementById('pestana-' + nombrePestana);
-      if (objetivo) {
-        objetivo.classList.add('activa');
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function volverPortada() {
-      document.getElementById('vista-pestana').classList.remove('activa');
-      document.getElementById('vista-portada').classList.add('activa');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
-
-</body>
-</html>
+    .btn-seccion::before {
+      content:
