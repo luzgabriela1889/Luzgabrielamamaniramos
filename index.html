@@ -4,65 +4,94 @@ HTML
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Gabriela | Bio</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Luz Gabriela | Portada</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
-  <main class="contenedor-bio">
-    <!-- Encabezado de perfil -->
-    <header class="perfil-header">
-      <img src="perfil.jpg" alt="Foto de perfil de Luz Gabriela" class="avatar">
-      <h1 class="nombre">Luz Gabriela</h1>
-      <p class="bio-texto">Estudiante de Contabilidad · Creando mi espacio digital</p>
-    </header>
-
-    <!-- Selector rápido de pestañas -->
-    <div class="pestanas-bio">
-      <button class="tab-btn activa" onclick="cambiarTab('enlaces', this)">Enlaces</button>
-      <button class="tab-btn" onclick="cambiarTab('sobre-mi', this)">Sobre mí</button>
-    </div>
-
-    <!-- Pestaña 1: Enlaces estilo tarjeta (tipo nayn.bio) -->
-    <section id="enlaces" class="panel activa">
-      <a href="https://github.com/luzgabriela1889" target="_blank" class="enlace-card">
-        <div>
-          <strong>GitHub</strong>
-          <span>Mis repositorios y proyectos</span>
-        </div>
-        <span class="flecha">→</span>
-      </a>
-
-      <a href="#sobre-mi" onclick="activarPestanaSobreMi(event)" class="enlace-card">
-        <div>
-          <strong>Mi presentación</strong>
-          <span>Conoce un poco más sobre mí</span>
-        </div>
-        <span class="flecha">→</span>
-      </a>
+  <main class="escenario">
+    <!-- Tarjeta 1: Portada con puerta interactiva al centro -->
+    <section id="tarjeta-portada" class="tarjeta-portada activa">
+      <div class="marco-imagen">
+        <img src="Portada 1.jpg" alt="Puerta iluminada en un campo verde en la oscuridad" class="img-portada">
+        <button type="button" class="puerta-zona" onclick="abrirCarpetas()" aria-label="Abrir puerta para ver mis carpetas">
+          <span class="etiqueta-puerta">Entrar</span>
+        </button>
+      </div>
+      <h1 class="titulo-portada">Luz Gabriela</h1>
+      <p class="subtitulo-portada">Haz clic en la puerta iluminada para abrir mis carpetas</p>
     </section>
 
-    <!-- Pestaña 2: Sobre mí -->
-    <section id="sobre-mi" class="panel">
-      <div class="caja-texto">
-        <h2>Sobre mí</h2>
-        <p>¡Hola! Soy Luz Gabriela. Aquí puedes contar qué estás estudiando, qué te apasiona o qué proyectos estás armando.</p>
+    <!-- Tarjeta 2: Carpetas de información -->
+    <section id="tarjeta-carpetas" class="tarjeta-carpetas">
+      <div class="encabezado-carpetas">
+        <div>
+          <h2>Mis carpetas</h2>
+          <p>Selecciona una carpeta para ver su información</p>
+        </div>
+        <button type="button" class="btn-volver" onclick="volverPortada()">← Portada</button>
+      </div>
+
+      <div class="grid-carpetas">
+        <button type="button" class="carpeta-item activa" onclick="mostrarCarpeta('sobre-mi', this)">
+          <span class="icono-carpeta">📁</span>
+          <span>Sobre mí</span>
+        </button>
+
+        <button type="button" class="carpeta-item" onclick="mostrarCarpeta('estudios', this)">
+          <span class="icono-carpeta">📁</span>
+          <span>Estudios</span>
+        </button>
+
+        <button type="button" class="carpeta-item" onclick="mostrarCarpeta('proyectos', this)">
+          <span class="icono-carpeta">📁</span>
+          <span>Proyectos</span>
+        </button>
+
+        <button type="button" class="carpeta-item" onclick="mostrarCarpeta('contacto', this)">
+          <span class="icono-carpeta">📁</span>
+          <span>Contacto</span>
+        </button>
+      </div>
+
+      <div id="info-sobre-mi" class="visor-carpeta activa">
+        <h3>Sobre mí</h3>
+        <p>¡Hola! Soy Luz Gabriela. Aquí puedes escribir una breve presentación sobre ti y lo que te gusta.</p>
+      </div>
+
+      <div id="info-estudios" class="visor-carpeta">
+        <h3>Estudios</h3>
+        <p>Aquí puedes compartir tus estudios, materias o temas que te interese destacar.</p>
+      </div>
+
+      <div id="info-proyectos" class="visor-carpeta">
+        <h3>Proyectos</h3>
+        <p>Aquí puedes agregar tus trabajos, prácticas o enlaces a tus repositorios en GitHub.</p>
+      </div>
+
+      <div id="info-contacto" class="visor-carpeta">
+        <h3>Contacto</h3>
+        <p>Visita mi perfil de GitHub: <a href="https://github.com/luzgabriela1889" target="_blank">github.com/luzgabriela1889</a></p>
       </div>
     </section>
   </main>
 
   <script>
-    function cambiarTab(id, boton) {
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('activa'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activa'));
-      document.getElementById(id).classList.add('activa');
-      boton.classList.add('activa');
+    function abrirCarpetas() {
+      document.getElementById('tarjeta-portada').classList.remove('activa');
+      document.getElementById('tarjeta-carpetas').classList.add('activa');
     }
 
-    function activarPestanaSobreMi(e) {
-      e.preventDefault();
-      const botones = document.querySelectorAll('.tab-btn');
-      cambiarTab('sobre-mi', botones[1]);
+    function volverPortada() {
+      document.getElementById('tarjeta-carpetas').classList.remove('activa');
+      document.getElementById('tarjeta-portada').classList.add('activa');
+    }
+
+    function mostrarCarpeta(nombre, boton) {
+      document.querySelectorAll('.visor-carpeta').forEach(v => v.classList.remove('activa'));
+      document.querySelectorAll('.carpeta-item').forEach(b => b.classList.remove('activa'));
+      document.getElementById('info-' + nombre).classList.add('activa');
+      boton.classList.add('activa');
     }
   </script>
 
