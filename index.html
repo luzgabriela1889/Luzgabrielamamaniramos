@@ -133,22 +133,21 @@
     }
 
     /* =========================================
-       PORTADA: 8 SECCIONES UN POCO MÁS A LA IZQUIERDA
+       PORTADA: 8 SECCIONES UN POCO MÁS A LA DERECHA
        ========================================= */
     .portada-layout {
       align-items: center;
-      justify-content: flex-start;
-      gap: 1.5rem;
-      padding: 2.5rem 2%;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2.5rem;
+      padding: 2.5rem 4.2% 2.5rem 3%;
     }
 
     .lado-izquierdo {
-      flex: 1 1 520px;
-      max-width: 680px;
+      flex: 1.2;
+      max-width: 720px;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
 
     .contenedor-perfil {
@@ -229,12 +228,12 @@
       background: linear-gradient(90deg, var(--acento-cian), var(--acento-violeta), transparent);
     }
 
-    /* Panel de las 8 secciones un poco más a la izquierda */
+    /* Panel de las 8 secciones un poco más a la derecha */
     .lado-derecho {
-      flex: 0 1 405px;
-      max-width: 405px;
+      flex: 0 0 430px;
+      max-width: 430px;
       width: 100%;
-      margin-left: -0.5rem;
+      margin-left: auto;
       background: var(--panel-oscuro);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
@@ -450,7 +449,7 @@
     }
 
     /* =========================================
-       SECCIÓN 1: IMÁGENES NÍTIDAS Y ORDENADAS ALREDEDOR
+       SECCIÓN 1: 8 IMÁGENES NÍTIDAS Y ORDENADAS ALREDEDOR
        ========================================= */
     .layout-sobre-mi-ordenado {
       display: flex;
@@ -461,6 +460,12 @@
     .fila-cuadricula-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+    }
+
+    .fila-cuadricula-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.9rem;
     }
 
@@ -485,13 +490,13 @@
       background: rgba(13, 21, 39, 0.9);
       box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
       flex: 1;
-      min-height: 118px;
+      min-height: 120px;
     }
 
     .tarjeta-foto-nitida img {
       width: 100%;
       height: 100%;
-      min-height: 118px;
+      min-height: 120px;
       max-height: 165px;
       object-fit: cover;
       display: block;
@@ -576,7 +581,8 @@
     }
 
     @media (max-width: 640px) {
-      .fila-cuadricula-3 {
+      .fila-cuadricula-3,
+      .fila-cuadricula-2 {
         grid-template-columns: 1fr;
       }
 
@@ -682,7 +688,7 @@
         <h2>Sobre mí (Biografía)</h2>
 
         <div class="layout-sobre-mi-ordenado">
-          <!-- Fila superior: 3 imágenes nítidas -->
+          <!-- Fila superior: 3 imágenes -->
           <div class="fila-cuadricula-3">
             <div class="tarjeta-foto-nitida">
               <img src="Ciudad%20secci%C3%B3n%201.jpg" alt="Ciudad de Ayaviri">
@@ -695,7 +701,7 @@
             </div>
           </div>
 
-          <!-- Centro: 2 imágenes a la izquierda, biografía al centro, 2 imágenes a la derecha -->
+          <!-- Centro: 2 imágenes a la izquierda, biografía al centro, 1 imagen a la derecha -->
           <div class="cuerpo-central-con-lados">
             <div class="columna-fotos-lado">
               <div class="tarjeta-foto-nitida">
@@ -731,16 +737,10 @@
             </div>
           </div>
 
-          <!-- Fila inferior: 3 imágenes nítidas -->
-          <div class="fila-cuadricula-3">
+          <!-- Fila inferior: imagen restante -->
+          <div class="fila-cuadricula-2">
             <div class="tarjeta-foto-nitida">
               <img src="animal%202%20secci%C3%B3n%201.jpg" alt="Animal 2">
-            </div>
-            <div class="tarjeta-foto-nitida">
-              <img src="paisaje%201%20seccion%201.jpg" alt="Paisaje 1">
-            </div>
-            <div class="tarjeta-foto-nitida">
-              <img src="paisaje%202%20secci%C3%B3n%201.jpg" alt="Paisaje 2">
             </div>
           </div>
         </div>
