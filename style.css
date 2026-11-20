@@ -1,15 +1,13 @@
-CSS
-/* =========================================
-   VARIABLES DE ESTILO (fáciles de cambiar)
-   ========================================= */
 :root {
-  --color-texto: #f8fafc;
-  --color-suave: #cbd5e1;
-  --color-acento: #86efac;
-  --acento-fondo: rgba(74, 222, 128, 0.18);
-  --borde-suave: rgba(255, 255, 255, 0.16);
-  --tarjeta-fondo: rgba(8, 12, 20, 0.76);
-  --sombra-texto: 0 4px 22px rgba(0, 0, 0, 0.85);
+  --panel-oscuro: rgba(7, 13, 28, 0.85);
+  --panel-hover: rgba(18, 29, 54, 0.96);
+  --borde-neon: rgba(56, 189, 248, 0.42);
+  --borde-activo: rgba(192, 132, 252, 0.88);
+  --texto-principal: #f8fafc;
+  --texto-secundario: #cbd5e1;
+  --acento-cian: #38bdf8;
+  --acento-violeta: #c084fc;
+  --acento-menta: #5eead4;
 }
 
 * {
@@ -21,254 +19,322 @@ CSS
 
 body {
   min-height: 100vh;
-  color: var(--color-texto);
-  background-color: #05070a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1.2rem;
-  position: relative;
+  background-color: #030610;
+  color: var(--texto-principal);
   overflow-x: hidden;
+  position: relative;
 }
 
 /* =========================================
-   IMAGEN DE FONDO A PANTALLA COMPLETA
+   IMAGEN DE FONDO Y CAPA DE LEGIBILIDAD
    ========================================= */
-.fondo-escena {
+.fondo-imagen {
   position: fixed;
   inset: 0;
-  background-image: url("Portada 1.jpg");
+  z-index: -2;
+  background-image: url('Portada%20espacial.avif'); /* Apunta a tu archivo exacto */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -2;
 }
 
-/* Capa oscura encima del fondo para que las letras se lean con nitidez */
 .velo-oscuro {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(5, 7, 10, 0.35) 0%, rgba(5, 7, 10, 0.78) 100%);
   z-index: -1;
-}
-
-/* =========================================
-   CONTENEDOR PRINCIPAL Y VISTAS
-   ========================================= */
-.escenario {
-  width: 100%;
-  max-width: 580px;
-  position: relative;
-  z-index: 1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.14), transparent 45%),
+    radial-gradient(circle at 80% 25%, rgba(168, 85, 247, 0.16), transparent 48%),
+    linear-gradient(135deg, rgba(3, 6, 16, 0.82) 0%, rgba(5, 10, 24, 0.68) 55%, rgba(3, 6, 16, 0.86) 100%);
 }
 
 .vista {
   display: none;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .vista.activa {
-  display: block;
-  animation: aparecer 0.35s ease;
-}
-
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  display: flex;
 }
 
 /* =========================================
-   PORTADA: LETRAS FLOTANTES SOBRE EL FONDO
+   PORTADA PRINCIPAL (IZQUIERDA Y DERECHA)
    ========================================= */
-.encabezado-flotante {
-  text-align: center;
-  margin-bottom: 2.2rem;
-}
-
-.insignia {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-acento);
-  background: rgba(5, 10, 8, 0.75);
-  border: 1px solid rgba(134, 239, 172, 0.45);
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  margin-bottom: 0.85rem;
-  backdrop-filter: blur(6px);
-}
-
-.titulo-principal {
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  text-shadow: var(--sombra-texto);
-}
-
-.descripcion-portada {
-  margin: 0.7rem auto 0;
-  max-width: 440px;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--color-suave);
-  text-shadow: var(--sombra-texto);
-}
-
-.zona-accion {
-  display: flex;
-  flex-direction: column;
+.portada-layout {
   align-items: center;
-  gap: 0.65rem;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 3rem 5%;
 }
 
-.boton-puerta {
-  background: rgba(8, 14, 12, 0.82);
-  color: var(--color-texto);
-  border: 1.5px solid var(--color-acento);
-  border-radius: 14px;
-  padding: 0.8rem 1.45rem;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
+.lado-izquierdo {
+  flex: 1.25;
+  max-width: 780px;
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+/* Óvalo con bordes difuminados y máscara de degradado radial */
+.contenedor-perfil {
+  width: 175px;
+  height: 215px; /* Proporción ovalada vertical */
+  min-width: 175px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  /* Difumina gradualmente los bordes usando una máscara radial */
+  -webkit-mask-image: radial-gradient(ellipse at center, black 52%, transparent 74%);
+  mask-image: radial-gradient(ellipse at center, black 52%, transparent 74%);
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.3));
+}
+
+.foto-perfil {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: #0f172a;
+}
+
+.texto-presentacion {
+  flex: 1;
+}
+
+.etiqueta-orbital {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 26px rgba(134, 239, 172, 0.35);
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acento-menta);
+  border: 1px solid rgba(94, 234, 212, 0.42);
+  background: rgba(94, 234, 212, 0.1);
+  padding: 0.36rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.1rem;
 }
 
-.boton-puerta:hover {
-  transform: translateY(-3px) scale(1.03);
-  background: rgba(21, 128, 61, 0.88);
-  box-shadow: 0 0 34px rgba(134, 239, 172, 0.65);
+.saludo-grande {
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
 }
 
-.ayuda-puerta {
-  font-size: 0.84rem;
-  color: var(--color-suave);
-  text-shadow: var(--sombra-texto);
+.saludo-grande span {
+  background: linear-gradient(95deg, #7dd3fc 0%, #c084fc 55%, #5eead4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* =========================================
-   TARJETA DE CARPETAS
+   MENÚ DERECHO (8 SECCIONES INTERACTIVAS)
    ========================================= */
-.tarjeta-carpetas {
-  background: var(--tarjeta-fondo);
+.lado-derecho {
+  flex: 0.85;
+  max-width: 440px;
+  width: 100%;
+  background: var(--panel-oscuro);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--borde-suave);
+  border: 1px solid var(--borde-neon);
   border-radius: 22px;
   padding: 1.5rem;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
 }
 
-.encabezado-tarjeta {
+.titulo-menu {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--acento-violeta);
+  font-weight: 700;
+  margin-bottom: 0.95rem;
+}
+
+.lista-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.56rem;
+}
+
+.btn-seccion {
+  width: 100%;
+  background: rgba(13, 21, 39, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: var(--texto-principal);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.btn-seccion:hover {
+  transform: translateX(-5px);
+  background: var(--panel-hover);
+  border-color: var(--acento-cian);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.22);
+}
+
+.btn-numero {
+  color: var(--acento-cian);
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-right: 0.35rem;
+}
+
+.btn-flecha {
+  color: var(--acento-violeta);
+  transition: transform 0.2s ease;
+}
+
+.btn-seccion:hover .btn-flecha {
+  transform: translateX(3px);
+  color: var(--acento-cian);
+}
+
+/* =========================================
+   VISTA DE CADA PESTAÑA INTERIOR
+   ========================================= */
+.vista-pestana {
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+}
+
+.caja-pestana {
+  width: 100%;
+  max-width: 760px;
+  background: var(--panel-oscuro);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--borde-activo);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 26px 65px rgba(0, 0, 0, 0.8);
+}
+
+.barra-superior {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1.15rem;
-  border-bottom: 1px solid var(--borde-suave);
-}
-
-.encabezado-tarjeta h2 {
-  font-size: 1.3rem;
-}
-
-.encabezado-tarjeta p {
-  font-size: 0.86rem;
-  color: var(--color-suave);
-  margin-top: 0.15rem;
+  padding-bottom: 1.15rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  flex-wrap: wrap;
 }
 
 .btn-volver {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--color-texto);
-  border: 1px solid var(--borde-suave);
+  background: rgba(56, 189, 248, 0.14);
+  color: var(--texto-principal);
+  border: 1px solid rgba(56, 189, 248, 0.5);
   border-radius: 10px;
-  padding: 0.45rem 0.85rem;
-  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .btn-volver:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(56, 189, 248, 0.28);
+  transform: translateX(-2px);
 }
 
-.carpetas-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  margin-bottom: 1.15rem;
+.etiqueta-sector {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento-cian);
 }
 
-.carpeta-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--borde-suave);
-  border-radius: 14px;
-  padding: 0.9rem 1rem;
-  color: var(--color-texto);
-  font-size: 0.94rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: all 0.2s ease;
-}
-
-.carpeta-izq {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.carpeta-btn:hover,
-.carpeta-btn.activa {
-  background: var(--acento-fondo);
-  border-color: var(--color-acento);
-  transform: translateY(-2px);
-}
-
-.contenido-carpeta {
+.pestana-contenido {
   display: none;
-  background: rgba(3, 6, 12, 0.75);
-  border: 1px solid var(--borde-suave);
-  border-radius: 14px;
-  padding: 1.15rem;
-  line-height: 1.6;
 }
 
-.contenido-carpeta.activa {
+.pestana-contenido.activa {
   display: block;
+  animation: aparecer 0.3s ease;
 }
 
-.contenido-carpeta h3 {
-  color: var(--color-acento);
-  margin-bottom: 0.45rem;
-  font-size: 1.05rem;
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.contenido-carpeta p {
-  color: var(--color-suave);
-  font-size: 0.92rem;
+.pestana-contenido h2 {
+  font-size: 1.75rem;
+  color: #e9d5ff;
+  margin-bottom: 0.85rem;
 }
 
-.contenido-carpeta a {
-  color: #7dd3fc;
+.pestana-contenido p {
+  color: var(--texto-secundario);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 480px) {
-  .carpetas-grid {
-    grid-template-columns: 1fr;
+.pestana-contenido a {
+  color: var(--acento-cian);
+  text-decoration: none;
+}
+
+.pestana-contenido a:hover {
+  text-decoration: underline;
+}
+
+.lista-juegos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.lista-juegos li {
+  background: rgba(13, 21, 39, 0.88);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 960px) {
+  .portada-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2.2rem;
+  }
+
+  .lado-izquierdo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .lado-derecho {
+    max-width: 100%;
   }
 }
