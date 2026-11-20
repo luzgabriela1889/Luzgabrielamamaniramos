@@ -120,7 +120,7 @@
     .contenido-pestana h2 {
       font-size: 1.7rem;
       color: #e9d5ff;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .contenido-pestana p {
@@ -131,6 +131,41 @@
 
     .contenido-pestana a {
       color: #7dd3fc;
+    }
+
+    .lista-juegos {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .lista-juegos li {
+      background: #142038;
+      border: 1px solid #2b3f63;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .lista-juegos strong {
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .lista-juegos a {
+      color: #7dd3fc;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .lista-juegos a:hover {
+      text-decoration: underline;
     }
 
     .oculto {
@@ -199,7 +234,21 @@
 
     <div id="pestana-videojuegos" class="contenido-pestana">
       <h2>Videojuegos favoritos</h2>
-      <p>Escribe aquí tus videojuegos favoritos.</p>
+      <p>Algunos de mis videojuegos favoritos y sus páginas:</p>
+      <ul class="lista-juegos">
+        <li>
+          <strong>Hollow Knight</strong>
+          <a href="https://www.hollowknight.com/" target="_blank" rel="noopener noreferrer">Sitio oficial de Hollow Knight →</a>
+        </li>
+        <li>
+          <strong>Left 4 Dead</strong>
+          <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank" rel="noopener noreferrer">Página de Left 4 Dead en Steam →</a>
+        </li>
+        <li>
+          <strong>World of Warcraft</strong>
+          <a href="https://worldofwarcraft.blizzard.com/" target="_blank" rel="noopener noreferrer">Sitio oficial de World of Warcraft →</a>
+        </li>
+      </ul>
     </div>
 
     <div id="pestana-vida-academica" class="contenido-pestana">
