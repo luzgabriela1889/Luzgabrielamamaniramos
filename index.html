@@ -4,354 +4,43 @@ HTML
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Gabriela · Bio &amp; Portada</title>
-  <style>
-    :root {
-      --bg-base: #05070c;
-      --glass: rgba(13, 18, 29, 0.78);
-      --glass-elevated: rgba(255, 255, 255, 0.045);
-      --border: rgba(255, 255, 255, 0.11);
-      --border-glow: rgba(134, 239, 172, 0.65);
-      --accent: #86efac;
-      --accent-soft: rgba(74, 222, 128, 0.16);
-      --purple-glow: rgba(168, 85, 247, 0.22);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 50% 38%, rgba(74, 222, 128, 0.15), transparent 48%),
-        radial-gradient(circle at 82% 18%, var(--purple-glow), transparent 45%),
-        radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.12), transparent 45%),
-        var(--bg-base);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem 1.2rem;
-    }
-
-    .escenario {
-      width: 100%;
-      max-width: 590px;
-    }
-
-    /* Tarjetas principales estilo bio-link */
-    .tarjeta {
-      display: none;
-      background: var(--glass);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 1.6rem;
-      box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .tarjeta.activa {
-      display: block;
-      animation: entrarTarjeta 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @keyframes entrarTarjeta {
-      from {
-        opacity: 0;
-        transform: translateY(14px) scale(0.985);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* Portada con imagen y puerta interactiva */
-    .marco-imagen {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: #030508;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
-    }
-
-    .img-portada {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .marco-imagen:hover .img-portada {
-      transform: scale(1.015);
-    }
-
-    .boton-puerta {
-      position: absolute;
-      left: 50%;
-      top: 47%;
-      transform: translate(-50%, -50%);
-      background: rgba(6, 10, 16, 0.86);
-      backdrop-filter: blur(8px);
-      color: var(--text-main);
-      border: 1.5px solid var(--border-glow);
-      border-radius: 12px;
-      padding: 0.58rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      box-shadow:
-        0 0 24px rgba(134, 239, 172, 0.45),
-        0 8px 20px rgba(0, 0, 0, 0.6);
-      transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-      animation: pulsoPuerta 2.6s infinite ease-in-out;
-    }
-
-    @keyframes pulsoPuerta {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(134, 239, 172, 0.4), 0 8px 20px rgba(0, 0, 0, 0.6);
-      }
-      50% {
-        box-shadow: 0 0 32px rgba(134, 239, 172, 0.75), 0 8px 24px rgba(0, 0, 0, 0.65);
-      }
-    }
-
-    .boton-puerta:hover {
-      animation: none;
-      transform: translate(-50%, -50%) scale(1.07);
-      background: rgba(22, 101, 52, 0.9);
-      border-color: #bbf7d0;
-      box-shadow: 0 0 36px rgba(134, 239, 172, 0.85);
-    }
-
-    .pie-portada {
-      margin-top: 1.25rem;
-      text-align: center;
-    }
-
-    .insignia {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-soft);
-      border: 1px solid rgba(134, 239, 172, 0.28);
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      margin-bottom: 0.6rem;
-    }
-
-    .titulo {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-    }
-
-    .subtitulo {
-      margin-top: 0.35rem;
-      color: var(--text-muted);
-      font-size: 0.93rem;
-      line-height: 1.45;
-    }
-
-    /* Encabezado de tarjeta de carpetas */
-    .encabezado {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding-bottom: 1.1rem;
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .encabezado h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .encabezado p {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      margin-top: 0.15rem;
-    }
-
-    .btn-volver {
-      background: var(--glass-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.5rem 0.9rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-    }
-
-    .btn-volver:hover {
-      background: rgba(255, 255, 255, 0.11);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateX(-2px);
-    }
-
-    /* Cuadrícula de carpetas */
-    .carpetas-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .carpeta-btn {
-      background: var(--glass-elevated);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 0.95rem 1.05rem;
-      color: #e2e8f0;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem;
-      text-align: left;
-      transition: all 0.22s ease;
-    }
-
-    .carpeta-izq {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-    }
-
-    .carpeta-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.24);
-      transform: translateY(-2px);
-    }
-
-    .carpeta-btn.activa {
-      background: var(--accent-soft);
-      border-color: var(--border-glow);
-      color: #ffffff;
-      box-shadow: 0 8px 24px rgba(74, 222, 128, 0.14);
-    }
-
-    .flecha-carpeta {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      transition: transform 0.2s ease, color 0.2s ease;
-    }
-
-    .carpeta-btn.activa .flecha-carpeta,
-    .carpeta-btn:hover .flecha-carpeta {
-      color: var(--accent);
-      transform: translateX(2px);
-    }
-
-    /* Visor de contenido de carpeta */
-    .contenido-carpeta {
-      display: none;
-      background: rgba(3, 6, 13, 0.72);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem 1.25rem;
-      line-height: 1.65;
-    }
-
-    .contenido-carpeta.activa {
-      display: block;
-      animation: entrarCarpeta 0.25s ease;
-    }
-
-    @keyframes entrarCarpeta {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .contenido-carpeta h3 {
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-size: 1.08rem;
-      font-weight: 700;
-    }
-
-    .contenido-carpeta p {
-      color: #cbd5e1;
-      font-size: 0.93rem;
-    }
-
-    .contenido-carpeta a {
-      color: #7dd3fc;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(125, 211, 252, 0.4);
-    }
-
-    .contenido-carpeta a:hover {
-      color: #bae6fd;
-      border-bottom-color: #bae6fd;
-    }
-
-    @media (max-width: 480px) {
-      .carpetas-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tarjeta {
-        padding: 1.2rem;
-        border-radius: 20px;
-      }
-    }
-  </style>
+  <title>Luz Gabriela · Bio</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
+  <!-- Capa de fondo con la imagen y un velo oscuro para que las letras resalten -->
+  <div class="fondo-escena" aria-hidden="true"></div>
+  <div class="velo-oscuro" aria-hidden="true"></div>
+
+  <!-- Contenido principal encima del fondo -->
   <main class="escenario">
-    <!-- Tarjeta 1: Portada -->
-    <section id="portada" class="tarjeta activa">
-      <div class="marco-imagen">
-        <img src="Portada 1.jpg" alt="Puerta iluminada sobre césped en la oscuridad" class="img-portada">
+
+    <!-- Vista 1: Portada sobre la escena de fondo -->
+    <section id="portada" class="vista activa">
+      <div class="encabezado-flotante">
+        <span class="insignia">Espacio personal</span>
+        <h1 class="titulo-principal">Luz Gabriela</h1>
+        <p class="descripcion-portada">
+          Explora mi rincón digital y abre la puerta para descubrir mis carpetas.
+        </p>
+      </div>
+
+      <div class="zona-accion">
         <button type="button" class="boton-puerta" onclick="irACarpetas()">
           <span>Abrir puerta</span>
-          <span>↗</span>
+          <span class="icono-flecha">↗</span>
         </button>
-      </div>
-      <div class="pie-portada">
-        <span class="insignia">Espacio personal</span>
-        <h1 class="titulo">Luz Gabriela</h1>
-        <p class="subtitulo">Presiona sobre la puerta iluminada para abrir mis carpetas</p>
+        <p class="ayuda-puerta">Haz clic aquí para entrar a las carpetas</p>
       </div>
     </section>
 
-    <!-- Tarjeta 2: Carpetas -->
-    <section id="carpetas" class="tarjeta">
-      <div class="encabezado">
+    <!-- Vista 2: Tarjeta de carpetas flotante sobre el fondo -->
+    <section id="carpetas" class="vista tarjeta-carpetas">
+      <div class="encabezado-tarjeta">
         <div>
           <h2>Mis carpetas</h2>
-          <p>Selecciona una carpeta para explorar su información</p>
+          <p>Selecciona una carpeta para ver su contenido</p>
         </div>
         <button type="button" class="btn-volver" onclick="volverAPortada()">← Portada</button>
       </div>
@@ -397,7 +86,7 @@ HTML
 
       <div id="carpeta-estudios" class="contenido-carpeta">
         <h3>Estudios</h3>
-        <p>Aquí puedes compartir tu carrera, temas de interés o lo que estás aprendiendo.</p>
+        <p>Aquí puedes compartir tus estudios, materias o temas que te interese destacar.</p>
       </div>
 
       <div id="carpeta-proyectos" class="contenido-carpeta">
@@ -410,6 +99,7 @@ HTML
         <p>Visita mi GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
       </div>
     </section>
+
   </main>
 
   <script>
