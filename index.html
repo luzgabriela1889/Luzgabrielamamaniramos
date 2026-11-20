@@ -3,15 +3,503 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Gabriela Mamani Ramos | Página Web Personal</title>
+  <title>Luz Gabriela Mamani Ramos | Bitácora Espacial</title>
   <meta name="description" content="Página web personal de Luz Gabriela Mamani Ramos: biografía, gustos, vida académica, sueños y proyectos, y contacto.">
   <link rel="canonical" href="https://luzgabriela1889.github.io/mipagina/">
-  <link rel="stylesheet" href="estilos.css">
+  <style>
+    :root {
+      --bg-espacio: #02050e;
+      --panel-oscuro: rgba(7, 13, 28, 0.84);
+      --panel-hover: rgba(18, 29, 54, 0.96);
+      --borde-neon: rgba(56, 189, 248, 0.4);
+      --borde-fuerte: rgba(56, 189, 248, 0.85);
+      --borde-activo: rgba(192, 132, 252, 0.88);
+      --texto-principal: #f8fafc;
+      --texto-secundario: #cbd5e1;
+      --texto-apagado: #94a3b8;
+      --acento-cian: #38bdf8;
+      --acento-violeta: #c084fc;
+      --acento-menta: #5eead4;
+      --sombra-profunda: 0 26px 65px rgba(0, 0, 0, 0.78);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-espacio);
+      color: var(--texto-principal);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* =========================================
+       FONDO CON TU IMAGEN + ATMÓSFERA ESPACIAL
+       ========================================= */
+    .fondo-imagen {
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      background-image: url('Portada%20espacial.avif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .fondo-espacial {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(56, 189, 248, 0.24), transparent 44%),
+        radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.26), transparent 48%),
+        radial-gradient(circle at 68% 86%, rgba(94, 234, 212, 0.14), transparent 50%),
+        linear-gradient(155deg, rgba(2, 4, 10, 0.76) 0%, rgba(6, 11, 25, 0.64) 52%, rgba(2, 5, 14, 0.8) 100%);
+    }
+
+    .fondo-espacial::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.7px 1.7px at 12% 18%, rgba(255, 255, 255, 0.92), transparent),
+        radial-gradient(1.1px 1.1px at 28% 68%, rgba(255, 255, 255, 0.72), transparent),
+        radial-gradient(2.1px 2.1px at 45% 32%, rgba(125, 211, 252, 0.92), transparent),
+        radial-gradient(1px 1px at 67% 15%, rgba(255, 255, 255, 0.82), transparent),
+        radial-gradient(1.7px 1.7px at 78% 58%, rgba(216, 180, 254, 0.92), transparent),
+        radial-gradient(1.1px 1.1px at 90% 82%, rgba(255, 255, 255, 0.78), transparent);
+      background-size: 380px 380px;
+      animation: derivaEstrellas 50s linear infinite;
+    }
+
+    @keyframes derivaEstrellas {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-95px); }
+    }
+
+    .fondo-espacial::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
+      -webkit-mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
+    }
+
+    .anillo-orbital {
+      position: fixed;
+      left: -140px;
+      top: 50%;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      border: 1px dashed rgba(56, 189, 248, 0.22);
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: -2;
+      animation: girarAnillo 65s linear infinite;
+    }
+
+    .anillo-orbital::before {
+      content: "";
+      position: absolute;
+      inset: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(192, 132, 252, 0.16);
+    }
+
+    @keyframes girarAnillo {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* Vistas */
+    .vista {
+      display: none;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .vista.activa {
+      display: flex;
+    }
+
+    /* =========================================
+       PORTADA: IZQUIERDA (FOTO DIFUMINADA + SALUDO)
+       DERECHA (8 BLOQUES INTERACTIVOS)
+       ========================================= */
+    .portada-layout {
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      padding: 3rem 5%;
+    }
+
+    .lado-izquierdo {
+      flex: 1.25;
+      max-width: 790px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .contenedor-perfil {
+      width: 185px;
+      height: 225px;
+      min-width: 185px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 74%);
+      mask-image: radial-gradient(ellipse at center, black 50%, transparent 74%);
+      filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.35));
+    }
+
+    .foto-perfil {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background-color: #0f172a;
+    }
+
+    .texto-presentacion {
+      flex: 1;
+    }
+
+    .etiqueta-orbital {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--acento-menta);
+      border: 1px solid rgba(94, 234, 212, 0.42);
+      background: rgba(94, 234, 212, 0.08);
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 0 22px rgba(94, 234, 212, 0.14);
+    }
+
+    .punto-pulso {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acento-menta);
+      box-shadow: 0 0 12px var(--acento-menta);
+      animation: latido 2.2s infinite ease-in-out;
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.65; }
+    }
+
+    .saludo-grande {
+      font-size: clamp(2rem, 4vw, 3.55rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      text-shadow: 0 0 40px rgba(56, 189, 248, 0.28);
+    }
+
+    .saludo-grande span {
+      background: linear-gradient(95deg, #7dd3fc 0%, #c084fc 55%, #5eead4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .linea-decorativa {
+      margin-top: 1.4rem;
+      width: 140px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--acento-cian), var(--acento-violeta), transparent);
+    }
+
+    /* Panel derecho con los 8 bloques */
+    .lado-derecho {
+      flex: 0.85;
+      max-width: 445px;
+      width: 100%;
+      background: var(--panel-oscuro);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--borde-neon);
+      border-radius: 24px;
+      padding: 1.55rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        var(--sombra-profunda),
+        0 0 36px rgba(56, 189, 248, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .lado-derecho::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--acento-cian), var(--acento-violeta), transparent);
+    }
+
+    .cabecera-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .titulo-menu {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--acento-violeta);
+      font-weight: 700;
+    }
+
+    .contador-sectores {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--texto-apagado);
+      letter-spacing: 0.08em;
+    }
+
+    .lista-botones {
+      display: flex;
+      flex-direction: column;
+      gap: 0.56rem;
+    }
+
+    .btn-seccion {
+      width: 100%;
+      background: rgba(13, 21, 39, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 13px;
+      padding: 0.76rem 1rem;
+      color: var(--texto-principal);
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-seccion::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--acento-cian), var(--acento-violeta));
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-seccion:hover {
+      transform: translateX(-5px);
+      background: var(--panel-hover);
+      border-color: var(--borde-fuerte);
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.26);
+    }
+
+    .btn-seccion:hover::before {
+      opacity: 1;
+    }
+
+    .btn-numero {
+      color: var(--acento-cian);
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-right: 0.42rem;
+    }
+
+    .btn-flecha {
+      color: var(--acento-violeta);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-seccion:hover .btn-flecha {
+      transform: translateX(3px);
+      color: var(--acento-cian);
+    }
+
+    /* =========================================
+       VISTA DE PESTAÑA ABIERTA
+       ========================================= */
+    .vista-pestana {
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+
+    .caja-pestana {
+      width: 100%;
+      max-width: 760px;
+      background: var(--panel-oscuro);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--borde-activo);
+      border-radius: 26px;
+      padding: 2rem 2.1rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        var(--sombra-profunda),
+        0 0 40px rgba(192, 132, 252, 0.22);
+    }
+
+    .caja-pestana::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--acento-violeta), var(--acento-cian), var(--acento-menta));
+    }
+
+    .barra-superior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1.55rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      flex-wrap: wrap;
+    }
+
+    .btn-volver {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--texto-principal);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 11px;
+      padding: 0.55rem 1.05rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-volver:hover {
+      background: rgba(56, 189, 248, 0.28);
+    }
+
+    .etiqueta-sector {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--acento-cian);
+      background: rgba(56, 189, 248, 0.11);
+      border: 1px solid rgba(56, 189, 248, 0.34);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+    }
+
+    .pestana-contenido {
+      display: none;
+    }
+
+    .pestana-contenido.activa {
+      display: block;
+      animation: aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .pestana-contenido h2 {
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #f3e8ff, #7dd3fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.9rem;
+    }
+
+    .pestana-contenido p {
+      color: var(--texto-secundario);
+      font-size: 1rem;
+      line-height: 1.68;
+      margin-bottom: 1rem;
+    }
+
+    .pestana-contenido a {
+      color: var(--acento-cian);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.45);
+    }
+
+    .lista-juegos {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 0.6rem;
+    }
+
+    .lista-juegos li {
+      background: rgba(13, 21, 39, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 0.95rem 1.15rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 960px) {
+      .portada-layout {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2.2rem;
+      }
+
+      .lado-izquierdo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+
+      .lado-derecho {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <div class="fondo-imagen" aria-hidden="true"></div>
-  <div class="velo-oscuro" aria-hidden="true"></div>
+  <div class="fondo-espacial" aria-hidden="true"></div>
+  <div class="anillo-orbital" aria-hidden="true"></div>
 
   <!-- =========================================
        PORTADA PRINCIPAL
@@ -19,7 +507,6 @@
   <section id="vista-portada" class="vista portada-layout activa">
     <div class="lado-izquierdo">
       <div class="contenedor-perfil">
-        <!-- Apunta exactamente a tu imagen subida, codificando los espacios -->
         <img
           src="foto%20de%20perfil.jpeg"
           alt="Foto de perfil de Luz Gabriela Mamani Ramos"
@@ -29,52 +516,59 @@
       </div>
 
       <div class="texto-presentacion">
-        <span class="etiqueta-orbital">Portafolio Personal</span>
+        <span class="etiqueta-orbital">
+          <span class="punto-pulso"></span>
+          Bitácora Personal · Órbita 2026
+        </span>
         <h1 class="saludo-grande">
           Hola. Mi nombre es <span>Luz Gabriela Mamani Ramos</span> esta es mi pagina web personal.
         </h1>
+        <div class="linea-decorativa" aria-hidden="true"></div>
       </div>
     </div>
 
     <aside class="lado-derecho" aria-label="Menú de secciones">
-      <p class="titulo-menu">Secciones</p>
+      <div class="cabecera-menu">
+        <p class="titulo-menu">Explorar pestañas</p>
+        <span class="contador-sectores">08 SECTORES</span>
+      </div>
       <div class="lista-botones">
-        <button type="button" class="btn-seccion" onclick="abrirPestana('sobre-mi', 'Sección 01')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('sobre-mi', 'Sector 01')">
           <span><span class="btn-numero">01</span> Sobre mí (Biografía)</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('musica', 'Sección 02')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('musica', 'Sector 02')">
           <span><span class="btn-numero">02</span> Música favorita</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('libros', 'Sección 03')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('libros', 'Sector 03')">
           <span><span class="btn-numero">03</span> Libros favoritos</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('peliculas-series', 'Sección 04')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('peliculas-series', 'Sector 04')">
           <span><span class="btn-numero">04</span> Películas y series favoritas</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('videojuegos', 'Sección 05')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('videojuegos', 'Sector 05')">
           <span><span class="btn-numero">05</span> Videojuegos favoritos</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sección 06')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sector 06')">
           <span><span class="btn-numero">06</span> Vida académica</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('suenos-proyectos', 'Sección 07')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('suenos-proyectos', 'Sector 07')">
           <span><span class="btn-numero">07</span> Sueños y proyectos</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('redes-contactos', 'Sección 08')">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('redes-contactos', 'Sector 08')">
           <span><span class="btn-numero">08</span> Redes y contactos</span>
           <span class="btn-flecha">→</span>
         </button>
@@ -83,13 +577,13 @@
   </section>
 
   <!-- =========================================
-       VISTA DE CADA PESTAÑA INTERIOR (OCULTAS POR DEFECTO)
+       VISTA DE CADA PESTAÑA INTERIOR
        ========================================= -->
   <section id="vista-pestana" class="vista vista-pestana">
     <div class="caja-pestana">
       <div class="barra-superior">
-        <button type="button" class="btn-volver" onclick="volverPortada()">← Volver al inicio</button>
-        <span id="etiqueta-sector" class="etiqueta-sector">Sección 01</span>
+        <button type="button" class="btn-volver" onclick="volverPortada()">← Volver a la portada</button>
+        <span id="etiqueta-sector" class="etiqueta-sector">Sector 01</span>
       </div>
 
       <!-- 1. Sobre mí (Biografía) -->
