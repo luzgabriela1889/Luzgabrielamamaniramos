@@ -1,102 +1,196 @@
-HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Gabriela · Bio</title>
-  <link rel="stylesheet" href="estilo.css">
+  <title>Luz Gabriela</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #ffffff;
+      background-color: #05070a;
+      background-image: url("Portada 1.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .pantalla {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    /* Oculta las vistas por defecto y solo muestra la que tiene .activa */
+    .vista {
+      display: none;
+    }
+
+    .vista.activa {
+      display: block;
+    }
+
+    /* Portada limpia con letras encima del fondo */
+    .portada-contenido {
+      text-align: center;
+    }
+
+    .titulo {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.9);
+    }
+
+    .puerta-btn {
+      padding: 12px 22px;
+      border-radius: 10px;
+      border: 1.5px solid #ffffff;
+      background: rgba(5, 7, 10, 0.78);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.75);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .puerta-btn:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Tarjeta de carpetas */
+    .tarjeta-carpetas {
+      background: rgba(10, 14, 22, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
+    }
+
+    .cabecera-carpetas {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .cabecera-carpetas h2 {
+      font-size: 1.3rem;
+    }
+
+    .btn-volver {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .lista-carpetas {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .carpeta {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .carpeta.active {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: #ffffff;
+    }
+
+    .panel-info {
+      display: none;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      line-height: 1.5;
+    }
+
+    .panel-info.active {
+      display: block;
+    }
+
+    .panel-info h3 {
+      margin-bottom: 6px;
+    }
+
+    .panel-info a {
+      color: #93c5fd;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Capa de fondo con la imagen y un velo oscuro para que las letras resalten -->
-  <div class="fondo-escena" aria-hidden="true"></div>
-  <div class="velo-oscuro" aria-hidden="true"></div>
+  <main class="pantalla">
 
-  <!-- Contenido principal encima del fondo -->
-  <main class="escenario">
-
-    <!-- Vista 1: Portada sobre la escena de fondo -->
+    <!-- Vista 1: Portada -->
     <section id="portada" class="vista activa">
-      <div class="encabezado-flotante">
-        <span class="insignia">Espacio personal</span>
-        <h1 class="titulo-principal">Luz Gabriela</h1>
-        <p class="descripcion-portada">
-          Explora mi rincón digital y abre la puerta para descubrir mis carpetas.
-        </p>
-      </div>
-
-      <div class="zona-accion">
-        <button type="button" class="boton-puerta" onclick="irACarpetas()">
-          <span>Abrir puerta</span>
-          <span class="icono-flecha">↗</span>
+      <div class="portada-contenido">
+        <h1 class="titulo">Luz Gabriela</h1>
+        <button type="button" class="puerta-btn" onclick="irACarpetas()">
+          Abrir puerta
         </button>
-        <p class="ayuda-puerta">Haz clic aquí para entrar a las carpetas</p>
       </div>
     </section>
 
-    <!-- Vista 2: Tarjeta de carpetas flotante sobre el fondo -->
+    <!-- Vista 2: Tarjeta de carpetas -->
     <section id="carpetas" class="vista tarjeta-carpetas">
-      <div class="encabezado-tarjeta">
-        <div>
-          <h2>Mis carpetas</h2>
-          <p>Selecciona una carpeta para ver su contenido</p>
-        </div>
-        <button type="button" class="btn-volver" onclick="volverAPortada()">← Portada</button>
+      <div class="cabecera-carpetas">
+        <h2>Mis carpetas</h2>
+        <button type="button" class="btn-volver" onclick="volverPortada()">← Volver</button>
       </div>
 
-      <div class="carpetas-grid">
-        <button type="button" class="carpeta-btn activa" onclick="verCarpeta('sobre-mi', this)">
-          <span class="carpeta-izq">
-            <span>📁</span>
-            <span>Sobre mí</span>
-          </span>
-          <span class="flecha-carpeta">→</span>
-        </button>
-
-        <button type="button" class="carpeta-btn" onclick="verCarpeta('estudios', this)">
-          <span class="carpeta-izq">
-            <span>📁</span>
-            <span>Estudios</span>
-          </span>
-          <span class="flecha-carpeta">→</span>
-        </button>
-
-        <button type="button" class="carpeta-btn" onclick="verCarpeta('proyectos', this)">
-          <span class="carpeta-izq">
-            <span>📁</span>
-            <span>Proyectos</span>
-          </span>
-          <span class="flecha-carpeta">→</span>
-        </button>
-
-        <button type="button" class="carpeta-btn" onclick="verCarpeta('contacto', this)">
-          <span class="carpeta-izq">
-            <span>📁</span>
-            <span>Contacto</span>
-          </span>
-          <span class="flecha-carpeta">→</span>
-        </button>
+      <div class="lista-carpetas">
+        <button type="button" class="carpeta active" onclick="verCarpeta('sobre-mi', this)">📁 Sobre mí</button>
+        <button type="button" class="carpeta" onclick="verCarpeta('estudios', this)">📁 Estudios</button>
+        <button type="button" class="carpeta" onclick="verCarpeta('proyectos', this)">📁 Proyectos</button>
+        <button type="button" class="carpeta" onclick="verCarpeta('contacto', this)">📁 Contacto</button>
       </div>
 
-      <div id="carpeta-sobre-mi" class="contenido-carpeta activa">
+      <div id="sobre-mi" class="panel-info active">
         <h3>Sobre mí</h3>
-        <p>¡Hola! Soy Luz Gabriela. Aquí puedes escribir tu presentación personal y lo que te gusta.</p>
+        <p>Escribe aquí tu presentación.</p>
       </div>
 
-      <div id="carpeta-estudios" class="contenido-carpeta">
+      <div id="estudios" class="panel-info">
         <h3>Estudios</h3>
-        <p>Aquí puedes compartir tus estudios, materias o temas que te interese destacar.</p>
+        <p>Escribe aquí lo que estudias o te interesa.</p>
       </div>
 
-      <div id="carpeta-proyectos" class="contenido-carpeta">
+      <div id="proyectos" class="panel-info">
         <h3>Proyectos</h3>
-        <p>Aquí puedes agregar tus trabajos, prácticas o enlaces a tus repositorios en GitHub.</p>
+        <p>Escribe aquí tus proyectos o enlaces.</p>
       </div>
 
-      <div id="carpeta-contacto" class="contenido-carpeta">
+      <div id="contacto" class="panel-info">
         <h3>Contacto</h3>
-        <p>Visita mi GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
+        <p><a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">GitHub</a></p>
       </div>
     </section>
 
@@ -108,16 +202,16 @@ HTML
       document.getElementById('carpetas').classList.add('activa');
     }
 
-    function volverAPortada() {
+    function volverPortada() {
       document.getElementById('carpetas').classList.remove('activa');
       document.getElementById('portada').classList.add('activa');
     }
 
-    function verCarpeta(id, boton) {
-      document.querySelectorAll('.contenido-carpeta').forEach(c => c.classList.remove('activa'));
-      document.querySelectorAll('.carpeta-btn').forEach(b => b.classList.remove('activa'));
-      document.getElementById('carpeta-' + id).classList.add('activa');
-      boton.classList.add('activa');
+    function verCarpeta(id, btn) {
+      document.querySelectorAll('.panel-info').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.carpeta').forEach(c => c.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
     }
   </script>
 
