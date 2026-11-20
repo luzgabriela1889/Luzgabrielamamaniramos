@@ -3,8 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Gabriela</title>
+  <title>Luz Gabriela Mamani Ramos | Bitácora Espacial</title>
   <style>
+    :root {
+      --bg-espacio: #030610;
+      --panel-oscuro: rgba(7, 13, 27, 0.82);
+      --borde-neon: rgba(56, 189, 248, 0.38);
+      --borde-activo: rgba(192, 132, 252, 0.85);
+      --texto-principal: #f8fafc;
+      --texto-secundario: #cbd5e1;
+      --acento-cian: #38bdf8;
+      --acento-violeta: #c084fc;
+      --acento-menta: #5eead4;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,204 +26,527 @@
 
     body {
       min-height: 100vh;
-      color: #ffffff;
-      background-color: #05070a;
-      background-image: url("Portada 1.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
+      background-color: var(--bg-espacio);
+      color: var(--texto-principal);
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .pantalla {
-      width: 100%;
-      max-width: 560px;
+    /* =========================================
+       FONDO ESPACIAL: NEBULOSAS, ESTRELLAS Y REJILLA
+       ========================================= */
+    .fondo-espacial {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 16% 24%, rgba(56, 189, 248, 0.24), transparent 42%),
+        radial-gradient(circle at 84% 18%, rgba(168, 85, 247, 0.25), transparent 46%),
+        radial-gradient(circle at 65% 85%, rgba(94, 234, 212, 0.12), transparent 48%),
+        linear-gradient(155deg, #02040a 0%, #060b19 52%, #030610 100%);
     }
 
-    /* Oculta las vistas por defecto y solo muestra la que tiene .activa */
+    .fondo-espacial::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.6px 1.6px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 28% 68%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(2px 2px at 45% 32%, rgba(125, 211, 252, 0.9), transparent),
+        radial-gradient(1px 1px at 67% 15%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1.6px 1.6px at 78% 58%, rgba(216, 180, 254, 0.9), transparent),
+        radial-gradient(1px 1px at 90% 82%, rgba(255, 255, 255, 0.75), transparent),
+        radial-gradient(1px 1px at 35% 88%, rgba(94, 234, 212, 0.7), transparent),
+        radial-gradient(1.5px 1.5px at 54% 52%, rgba(255, 255, 255, 0.65), transparent);
+      background-size: 400px 400px;
+      animation: derivaEstrellas 45s linear infinite;
+    }
+
+    @keyframes derivaEstrellas {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-80px);
+      }
+    }
+
+    .fondo-espacial::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(56, 189, 248, 0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
+      -webkit-mask-image: radial-gradient(circle at 68% 50%, black 22%, transparent 82%);
+    }
+
+    /* Anillo orbital decorativo sutil */
+    .anillo-orbital {
+      position: fixed;
+      left: -120px;
+      top: 50%;
+      width: 540px;
+      height: 540px;
+      border-radius: 50%;
+      border: 1px dashed rgba(56, 189, 248, 0.16);
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: -1;
+      animation: girarAnillo 60s linear infinite;
+    }
+
+    @keyframes girarAnillo {
+      from {
+        transform: translateY(-50%) rotate(0deg);
+      }
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    /* Vistas */
     .vista {
       display: none;
+      min-height: 100vh;
+      width: 100%;
     }
 
     .vista.activa {
-      display: block;
-    }
-
-    /* Portada limpia con letras encima del fondo */
-    .portada-contenido {
-      text-align: center;
-    }
-
-    .titulo {
-      font-size: 2.3rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.9);
-    }
-
-    .puerta-btn {
-      padding: 12px 22px;
-      border-radius: 10px;
-      border: 1.5px solid #ffffff;
-      background: rgba(5, 7, 10, 0.78);
-      color: #ffffff;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.75);
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .puerta-btn:hover {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    /* Tarjeta de carpetas */
-    .tarjeta-carpetas {
-      background: rgba(10, 14, 22, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
-    }
-
-    .cabecera-carpetas {
       display: flex;
-      justify-content: space-between;
+    }
+
+    /* =========================================
+       PORTADA ASIMÉTRICA: IZQUIERDA / DERECHA
+       ========================================= */
+    .portada-layout {
       align-items: center;
-      margin-bottom: 16px;
+      justify-content: space-between;
+      gap: 3rem;
+      padding: 3rem 5%;
     }
 
-    .cabecera-carpetas h2 {
-      font-size: 1.3rem;
+    .lado-izquierdo {
+      flex: 1.25;
+      max-width: 740px;
     }
 
-    .btn-volver {
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      cursor: pointer;
+    .etiqueta-orbital {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--acento-menta);
+      border: 1px solid rgba(94, 234, 212, 0.4);
+      background: rgba(94, 234, 212, 0.08);
+      padding: 0.38rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.3rem;
+      box-shadow: 0 0 20px rgba(94, 234, 212, 0.12);
     }
 
-    .lista-carpetas {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
+    .punto-pulso {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--acento-menta);
+      box-shadow: 0 0 10px var(--acento-menta);
     }
 
-    .carpeta {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
-      color: #ffffff;
+    .saludo-grande {
+      font-size: clamp(2.25rem, 4.7vw, 4.1rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      text-shadow: 0 0 38px rgba(56, 189, 248, 0.22);
+    }
+
+    .saludo-grande span {
+      background: linear-gradient(95deg, #7dd3fc 0%, #c084fc 55%, #5eead4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Panel derecho de botones */
+    .lado-derecho {
+      flex: 0.85;
+      max-width: 440px;
+      width: 100%;
+      background: var(--panel-oscuro);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--borde-neon);
+      border-radius: 24px;
+      padding: 1.55rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 24px 55px rgba(0, 0, 0, 0.72),
+        0 0 35px rgba(56, 189, 248, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .lado-derecho::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--acento-cian), var(--acento-violeta), transparent);
+    }
+
+    .titulo-menu {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--acento-violeta);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .lista-botones {
+      display: flex;
+      flex-direction: column;
+      gap: 0.58rem;
+    }
+
+    .btn-seccion {
+      width: 100%;
+      background: rgba(13, 21, 39, 0.84);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 13px;
+      padding: 0.76rem 1rem;
+      color: var(--texto-principal);
+      font-size: 0.94rem;
       font-weight: 600;
       text-align: left;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .carpeta.active {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: #ffffff;
+    .btn-seccion:hover {
+      transform: translateX(-5px);
+      background: rgba(24, 36, 64, 0.96);
+      border-color: var(--acento-cian);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.26);
     }
 
-    .panel-info {
+    .btn-numero {
+      color: var(--acento-cian);
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-right: 0.4rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn-flecha {
+      color: var(--acento-violeta);
+      font-size: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-seccion:hover .btn-flecha {
+      transform: translateX(3px);
+      color: var(--acento-cian);
+    }
+
+    /* =========================================
+       VISTA DE PESTAÑA ABIERTA
+       ========================================= */
+    .vista-pestana {
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+
+    .caja-pestana {
+      width: 100%;
+      max-width: 760px;
+      background: var(--panel-oscuro);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--borde-activo);
+      border-radius: 26px;
+      padding: 2rem 2.1rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 26px 65px rgba(0, 0, 0, 0.78),
+        0 0 38px rgba(192, 132, 252, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .caja-pestana::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--acento-violeta), var(--acento-cian), var(--acento-menta));
+    }
+
+    .barra-superior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1.55rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      flex-wrap: wrap;
+    }
+
+    .btn-volver {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--texto-principal);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 11px;
+      padding: 0.55rem 1.05rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-volver:hover {
+      background: rgba(56, 189, 248, 0.26);
+      transform: translateX(-2px);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+    }
+
+    .etiqueta-sector {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--acento-cian);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .pestana-contenido {
       display: none;
-      padding: 14px;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      line-height: 1.5;
     }
 
-    .panel-info.active {
+    .pestana-contenido.activa {
       display: block;
+      animation: aparecer 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .panel-info h3 {
-      margin-bottom: 6px;
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .panel-info a {
-      color: #93c5fd;
+    .pestana-contenido h2 {
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #f3e8ff, #7dd3fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.9rem;
+    }
+
+    .pestana-contenido p {
+      color: var(--texto-secundario);
+      font-size: 1rem;
+      line-height: 1.68;
+      margin-bottom: 1rem;
+    }
+
+    .pestana-contenido a {
+      color: var(--acento-cian);
+    }
+
+    @media (max-width: 900px) {
+      .portada-layout {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+
+      .lado-derecho {
+        max-width: 100%;
+      }
+
+      .anillo-orbital {
+        width: 340px;
+        height: 340px;
+        left: -130px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <main class="pantalla">
+  <div class="fondo-espacial" aria-hidden="true"></div>
+  <div class="anillo-orbital" aria-hidden="true"></div>
 
-    <!-- Vista 1: Portada -->
-    <section id="portada" class="vista activa">
-      <div class="portada-contenido">
-        <h1 class="titulo">Luz Gabriela</h1>
-        <button type="button" class="puerta-btn" onclick="irACarpetas()">
-          Abrir puerta
+  <!-- =========================================
+       PORTADA PRINCIPAL
+       ========================================= -->
+  <section id="vista-portada" class="vista portada-layout activa">
+    <div class="lado-izquierdo">
+      <span class="etiqueta-orbital">
+        <span class="punto-pulso"></span>
+        Bitácora Personal · Órbita 2026
+      </span>
+      <h1 class="saludo-grande">
+        Hola. Mi nombre es <span>Luz Gabriela Mamani Ramos</span> esta es mi pagina web personal.
+      </h1>
+    </div>
+
+    <aside class="lado-derecho" aria-label="Menú de secciones">
+      <p class="titulo-menu">Explorar pestañas</p>
+      <div class="lista-botones">
+        <button type="button" class="btn-seccion" onclick="abrirPestana('sobre-mi', 'Sector 01')">
+          <span><span class="btn-numero">01</span> Sobre mí (Biografía)</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('musica', 'Sector 02')">
+          <span><span class="btn-numero">02</span> Música favorita</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('libros', 'Sector 03')">
+          <span><span class="btn-numero">03</span> Libros favoritos</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('peliculas-series', 'Sector 04')">
+          <span><span class="btn-numero">04</span> Películas y series favoritas</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('videojuegos', 'Sector 05')">
+          <span><span class="btn-numero">05</span> Videojuegos favoritos</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sector 06')">
+          <span><span class="btn-numero">06</span> Vida académica</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('suenos-proyectos', 'Sector 07')">
+          <span><span class="btn-numero">07</span> Sueños y proyectos</span>
+          <span class="btn-flecha">→</span>
+        </button>
+
+        <button type="button" class="btn-seccion" onclick="abrirPestana('redes-contactos', 'Sector 08')">
+          <span><span class="btn-numero">08</span> Redes y contactos</span>
+          <span class="btn-flecha">→</span>
         </button>
       </div>
-    </section>
+    </aside>
+  </section>
 
-    <!-- Vista 2: Tarjeta de carpetas -->
-    <section id="carpetas" class="vista tarjeta-carpetas">
-      <div class="cabecera-carpetas">
-        <h2>Mis carpetas</h2>
-        <button type="button" class="btn-volver" onclick="volverPortada()">← Volver</button>
+  <!-- =========================================
+       VISTA DE CADA PESTAÑA
+       ========================================= -->
+  <section id="vista-pestana" class="vista vista-pestana">
+    <div class="caja-pestana">
+      <div class="barra-superior">
+        <button type="button" class="btn-volver" onclick="volverPortada()">← Volver a la portada</button>
+        <span id="etiqueta-sector" class="etiqueta-sector">Sector 01</span>
       </div>
 
-      <div class="lista-carpetas">
-        <button type="button" class="carpeta active" onclick="verCarpeta('sobre-mi', this)">📁 Sobre mí</button>
-        <button type="button" class="carpeta" onclick="verCarpeta('estudios', this)">📁 Estudios</button>
-        <button type="button" class="carpeta" onclick="verCarpeta('proyectos', this)">📁 Proyectos</button>
-        <button type="button" class="carpeta" onclick="verCarpeta('contacto', this)">📁 Contacto</button>
+      <!-- 1. Sobre mí (Biografía) -->
+      <div id="pestana-sobre-mi" class="pestana-contenido">
+        <h2>Sobre mí (Biografía)</h2>
+        <p>¡Hola! Soy Luz Gabriela Mamani Ramos. Aquí puedes escribir tu biografía, quién eres, de dónde vienes y qué te define.</p>
       </div>
 
-      <div id="sobre-mi" class="panel-info active">
-        <h3>Sobre mí</h3>
-        <p>Escribe aquí tu presentación.</p>
+      <!-- 2. Música favorita -->
+      <div id="pestana-musica" class="pestana-contenido">
+        <h2>Música favorita</h2>
+        <p>Aquí puedes compartir tus canciones, artistas, bandas o géneros musicales favoritos.</p>
       </div>
 
-      <div id="estudios" class="panel-info">
-        <h3>Estudios</h3>
-        <p>Escribe aquí lo que estudias o te interesa.</p>
+      <!-- 3. Libros favoritos -->
+      <div id="pestana-libros" class="pestana-contenido">
+        <h2>Libros favoritos</h2>
+        <p>Aquí puedes anotar los libros o lecturas que más te han marcado o que estás leyendo.</p>
       </div>
 
-      <div id="proyectos" class="panel-info">
-        <h3>Proyectos</h3>
-        <p>Escribe aquí tus proyectos o enlaces.</p>
+      <!-- 4. Películas y series favoritas -->
+      <div id="pestana-peliculas-series" class="pestana-contenido">
+        <h2>Películas y series favoritas</h2>
+        <p>Aquí puedes listar tus películas y series preferidas o tus recomendaciones.</p>
       </div>
 
-      <div id="contacto" class="panel-info">
-        <h3>Contacto</h3>
-        <p><a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+      <!-- 5. Videojuegos favoritos -->
+      <div id="pestana-videojuegos" class="pestana-contenido">
+        <h2>Videojuegos favoritos</h2>
+        <p>Aquí puedes contar cuáles son tus videojuegos favoritos y qué te gusta de ellos.</p>
       </div>
-    </section>
 
-  </main>
+      <!-- 6. Vida académica -->
+      <div id="pestana-vida-academica" class="pestana-contenido">
+        <h2>Vida académica</h2>
+        <p>Aquí puedes compartir tu formación, tus materias o temas de estudio y tus metas académicas.</p>
+      </div>
+
+      <!-- 7. Sueños y proyectos -->
+      <div id="pestana-suenos-proyectos" class="pestana-contenido">
+        <h2>Sueños y proyectos</h2>
+        <p>Aquí puedes escribir tus metas a futuro, los sueños que quieres cumplir y los proyectos en los que estás trabajando.</p>
+      </div>
+
+      <!-- 8. Redes y contactos -->
+      <div id="pestana-redes-contactos" class="pestana-contenido">
+        <h2>Redes y contactos</h2>
+        <p>GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
+        <p>Aquí puedes añadir tus demás redes sociales o medios de contacto.</p>
+      </div>
+    </div>
+  </section>
 
   <script>
-    function irACarpetas() {
-      document.getElementById('portada').classList.remove('activa');
-      document.getElementById('carpetas').classList.add('activa');
+    function abrirPestana(nombrePestana, textoSector) {
+      document.getElementById('vista-portada').classList.remove('activa');
+      document.getElementById('vista-pestana').classList.add('activa');
+
+      document.getElementById('etiqueta-sector').textContent = textoSector || 'Sección';
+
+      document.querySelectorAll('.pestana-contenido').forEach(el => {
+        el.classList.remove('activa');
+      });
+
+      const objetivo = document.getElementById('pestana-' + nombrePestana);
+      if (objetivo) {
+        objetivo.classList.add('activa');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function volverPortada() {
-      document.getElementById('carpetas').classList.remove('activa');
-      document.getElementById('portada').classList.add('activa');
-    }
-
-    function verCarpeta(id, btn) {
-      document.querySelectorAll('.panel-info').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.carpeta').forEach(c => c.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      btn.classList.add('active');
+      document.getElementById('vista-pestana').classList.remove('activa');
+      document.getElementById('vista-portada').classList.add('activa');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 
