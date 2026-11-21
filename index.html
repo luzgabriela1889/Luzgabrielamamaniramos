@@ -536,6 +536,48 @@
       border-bottom-color: #7dd3fc;
     }
 
+    /* =========================================
+       SECCIÓN 2: GALERÍA DE MÚSICA
+       ========================================= */
+    #pestana-musica p {
+      color: var(--texto-secundario);
+      font-size: 0.98rem;
+      line-height: 1.72;
+    }
+
+    .galeria-musica {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.95rem;
+      margin-top: 1.35rem;
+    }
+
+    .tarjeta-artista {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 189, 248, 0.34);
+      background: rgba(13, 21, 39, 0.9);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tarjeta-artista img {
+      width: 100%;
+      height: 145px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nombre-artista {
+      padding: 0.55rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--texto-principal);
+      text-align: center;
+      background: rgba(7, 13, 28, 0.92);
+    }
+
     .lista-juegos {
       list-style: none;
       display: flex;
@@ -594,6 +636,10 @@
         height: 155px;
         min-height: 155px;
       }
+
+      .galeria-musica {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     @media (max-width: 640px) {
@@ -603,6 +649,10 @@
 
       .columna-fotos-lado {
         flex-direction: column;
+      }
+
+      .galeria-musica {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -771,7 +821,7 @@
       <div id="pestana-musica" class="pestana-contenido">
         <h2>Música favorita</h2>
         <p>
-          Mi gusto musical se mueve entre la calma y el impulso, combinando el <em>indie</em>, el <em>lo-fi</em> y las atmósferas melancólicas de artistas como
+          Mi gusto musical se mueve entre la calma introspectiva y el impulso por cambiar de aire, combinando el <em>indie</em>, el <em>lo-fi</em> y las atmósferas melancólicas o nocturnas de artistas como
           <a href="https://www.youtube.com/watch?v=463ychC4qIM" target="_blank" rel="noopener noreferrer">Mac DeMarco</a>,
           <a href="https://www.youtube.com/watch?v=6unv2N5FXRc" target="_blank" rel="noopener noreferrer">The Neighbourhood</a>,
           <a href="https://www.youtube.com/watch?v=y7B6Z-_-Bcc&list=RDgbg27oT8Z9M&index=9" target="_blank" rel="noopener noreferrer">Vacations</a>,
@@ -781,9 +831,52 @@
           <a href="https://www.youtube.com/watch?v=PJyHarnq9yQ" target="_blank" rel="noopener noreferrer">Narvent</a>,
           <a href="https://www.youtube.com/watch?v=dSPiDFZmAnQ" target="_blank" rel="noopener noreferrer">DVRST</a> y
           <a href="https://www.youtube.com/watch?v=wZCGgDlLbRg" target="_blank" rel="noopener noreferrer">Navjaxx</a> con la intensidad cambiante de
-          <a href="https://www.youtube.com/watch?v=hccpZfM_g7k" target="_blank" rel="noopener noreferrer">Twenty One Pilots</a> y el ritmo de
-          <a href="https://www.youtube.com/watch?v=MQDKywDP5G8" target="_blank" rel="noopener noreferrer">4 Morat</a>.
+          <a href="https://www.youtube.com/watch?v=hccpZfM_g7k" target="_blank" rel="noopener noreferrer">Twenty One Pilots</a> y el ritmo, la actitud y la versatilidad de
+          <a href="https://www.youtube.com/watch?v=MQDKywDP5G8" target="_blank" rel="noopener noreferrer">Doja Cat</a>.
         </p>
+
+        <div class="galeria-musica">
+          <div class="tarjeta-artista">
+            <img src="Mac%20de%20marco.jpg" alt="Mac DeMarco">[cite: 5]
+            <span class="nombre-artista">Mac DeMarco</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="The%20neighbourhood.jpg" alt="The Neighbourhood">[cite: 5]
+            <span class="nombre-artista">The Neighbourhood</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="Vacations.jpg" alt="Vacations">[cite: 5]
+            <span class="nombre-artista">Vacations</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="Eyedress.jpg" alt="Eyedress">[cite: 4]
+            <span class="nombre-artista">Eyedress</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="molina.jpg" alt="Molina">[cite: 4]
+            <span class="nombre-artista">Molina</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="mareux.jpg" alt="Mareux">[cite: 4]
+            <span class="nombre-artista">Mareux</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="narvent.jpg" alt="Narvent">[cite: 4]
+            <span class="nombre-artista">Narvent</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="dvrst.jpg" alt="DVRST">[cite: 4]
+            <span class="nombre-artista">DVRST</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="navjaxx.jpg" alt="Navjaxx">[cite: 4]
+            <span class="nombre-artista">Navjaxx</span>
+          </div>
+          <div class="tarjeta-artista">
+            <img src="twenty.jpg" alt="Twenty One Pilots">[cite: 4]
+            <span class="nombre-artista">Twenty One Pilots</span>
+          </div>
+        </div>
       </div>
 
       <!-- 3. Libros favoritos -->
