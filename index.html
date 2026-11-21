@@ -132,7 +132,6 @@
       display: flex;
     }
 
-   
     .portada-layout {
       align-items: center;
       justify-content: space-between;
@@ -460,9 +459,9 @@
       gap: 0.9rem;
     }
 
-    .fila-cuadricula-2 {
+    .fila-cuadricula-1 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 0.9rem;
     }
 
@@ -578,8 +577,7 @@
     }
 
     @media (max-width: 640px) {
-      .fila-cuadricula-3,
-      .fila-cuadricula-2 {
+      .fila-cuadricula-3 {
         grid-template-columns: 1fr;
       }
 
@@ -595,7 +593,9 @@
   <div class="fondo-espacial" aria-hidden="true"></div>
   <div class="anillo-orbital" aria-hidden="true"></div>
 
-
+  <!-- =========================================
+       PORTADA PRINCIPAL
+       ========================================= -->
   <section id="vista-portada" class="vista portada-layout activa">
     <div class="lado-izquierdo">
       <div class="contenedor-perfil">
@@ -686,24 +686,24 @@
           <!-- Fila superior: 3 imágenes -->
           <div class="fila-cuadricula-3">
             <div class="tarjeta-foto-nitida">
-              <img src="Ciudad sección 1.jpg" alt="Ciudad sección 1">
+              <img src="Ciudad.jpg" alt="Ciudad">
             </div>
             <div class="tarjeta-foto-nitida">
-              <img src="Familia%20Secci%C3%B3n%201.jpeg" alt="Familia sección 1">
+              <img src="Familia%20Secci%C3%B3n%201.jpeg" alt="Familia Sección 1">
             </div>
             <div class="tarjeta-foto-nitida">
-              <img src="Arequipa%20secci%C3%B3n%201.webp" alt="Ciudad de Arequipa sección 1">
+              <img src="Arequipa%20secci%C3%B3n%201.webp" alt="Arequipa sección 1">
             </div>
           </div>
 
-          <!-- Centro: 2 imágenes a la izquierda, biografía al centro, 1 imagen a la derecha -->
+          <!-- Centro: 2 imágenes a la izquierda, biografía al centro, 2 imágenes a la derecha -->
           <div class="cuerpo-central-con-lados">
             <div class="columna-fotos-lado">
               <div class="tarjeta-foto-nitida">
                 <img src="universidad%20secci%C3%B3n%201.jpg" alt="universidad sección 1">
               </div>
               <div class="tarjeta-foto-nitida">
-                <img src="paisaje%201%20secci%C3%B3n%201.jpg" alt="Paisaje 1 sección 1">
+                <img src="paisaje%201.jpg" alt="paisaje 1">
               </div>
             </div>
 
@@ -724,18 +724,18 @@
 
             <div class="columna-fotos-lado">
               <div class="tarjeta-foto-nitida">
-                <img src="paisaje%202%20secci%C3%B3n%201.jpg" alt="Paisaje 2 sección 1">
+                <img src="paisaje%202.jpg" alt="paisaje 2">
               </div>
               <div class="tarjeta-foto-nitida">
-                <img src="animal%201%20secci%C3%B3n%201.jpg" alt="Animal 1 sección 1">
+                <img src="animal%201.jpg" alt="animal 1">
               </div>
             </div>
           </div>
 
           <!-- Fila inferior: imagen restante -->
-          <div class="fila-cuadricula-2">
+          <div class="fila-cuadricula-1">
             <div class="tarjeta-foto-nitida">
-              <img src="animal%202%20secci%C3%B3n%201.jpg" alt="Animal 2 sección 1">
+              <img src="animal%202.jpg" alt="animal 2">
             </div>
           </div>
         </div>
