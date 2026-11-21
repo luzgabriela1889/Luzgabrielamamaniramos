@@ -132,6 +132,9 @@
       display: flex;
     }
 
+    /* =========================================
+       PORTADA
+       ========================================= */
     .portada-layout {
       align-items: center;
       justify-content: space-between;
@@ -353,7 +356,7 @@
 
     .caja-pestana {
       width: 100%;
-      max-width: 940px;
+      max-width: 960px;
       margin: 0 auto;
       background: var(--panel-oscuro);
       backdrop-filter: blur(20px);
@@ -445,7 +448,7 @@
     }
 
     /* =========================================
-       SECCIÓN 1: 8 IMÁGENES NÍTIDAS Y ORDENADAS ALREDEDOR
+       SECCIÓN 1: 10 IMÁGENES NÍTIDAS Y SIMÉTRICAS
        ========================================= */
     .layout-sobre-mi-ordenado {
       display: flex;
@@ -459,24 +462,17 @@
       gap: 0.9rem;
     }
 
-    .fila-cuadricula-1 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.9rem;
-    }
-
     .cuerpo-central-con-lados {
       display: grid;
-      grid-template-columns: 165px 1fr 165px;
+      grid-template-columns: 175px 1fr 175px;
       gap: 0.95rem;
-      align-items: stretch;
+      align-items: start;
     }
 
     .columna-fotos-lado {
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
-      justify-content: space-between;
     }
 
     .tarjeta-foto-nitida {
@@ -485,15 +481,15 @@
       border: 1px solid rgba(56, 189, 248, 0.36);
       background: rgba(13, 21, 39, 0.9);
       box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
-      flex: 1;
-      min-height: 120px;
+      height: 155px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .tarjeta-foto-nitida img {
       width: 100%;
-      height: 100%;
-      min-height: 120px;
-      max-height: 165px;
+      height: 155px;
       object-fit: cover;
       display: block;
       filter: none;
@@ -504,9 +500,10 @@
       background: rgba(7, 13, 28, 0.92);
       border: 1px solid rgba(148, 163, 184, 0.25);
       border-radius: 16px;
-      padding: 1.3rem 1.4rem;
+      padding: 1.3rem 1.45rem;
       display: flex;
       align-items: center;
+      min-height: 319px;
     }
 
     .texto-biografia-limpio p {
@@ -573,6 +570,14 @@
 
       .columna-fotos-lado {
         flex-direction: row;
+      }
+
+      .columna-fotos-lado .tarjeta-foto-nitida {
+        flex: 1;
+      }
+
+      .texto-biografia-limpio {
+        min-height: auto;
       }
     }
 
@@ -689,10 +694,10 @@
               <img src="Ciudad.jpg" alt="Ciudad">
             </div>
             <div class="tarjeta-foto-nitida">
-              <img src="Familia%20Secci%C3%B3n%201.jpeg" alt="Familia Sección 1">
+              <img src="Familia Sección 1.jpeg" alt="Familia Sección 1">
             </div>
             <div class="tarjeta-foto-nitida">
-              <img src="Arequipa%20secci%C3%B3n%201.webp" alt="Arequipa sección 1">
+              <img src="Arequipa sección 1.webp" alt="Arequipa sección 1">
             </div>
           </div>
 
@@ -700,10 +705,10 @@
           <div class="cuerpo-central-con-lados">
             <div class="columna-fotos-lado">
               <div class="tarjeta-foto-nitida">
-                <img src="universidad%20secci%C3%B3n%201.jpg" alt="universidad sección 1">
+                <img src="universidad sección 1.jpg" alt="universidad sección 1">
               </div>
               <div class="tarjeta-foto-nitida">
-                <img src="paisaje%201.jpg" alt="paisaje 1">
+                <img src="paisaje 1.jpg" alt="paisaje 1">
               </div>
             </div>
 
@@ -724,18 +729,24 @@
 
             <div class="columna-fotos-lado">
               <div class="tarjeta-foto-nitida">
-                <img src="paisaje%202.jpg" alt="paisaje 2">
+                <img src="paisaje 2.jpg" alt="paisaje 2">
               </div>
               <div class="tarjeta-foto-nitida">
-                <img src="animal%201.jpg" alt="animal 1">
+                <img src="animal 1.jpg" alt="animal 1">
               </div>
             </div>
           </div>
 
-          <!-- Fila inferior: imagen restante -->
-          <div class="fila-cuadricula-1">
+          <!-- Fila inferior: 3 imágenes -->
+          <div class="fila-cuadricula-3">
             <div class="tarjeta-foto-nitida">
-              <img src="animal%202.jpg" alt="animal 2">
+              <img src="animal 2.jpg" alt="animal 2">
+            </div>
+            <div class="tarjeta-foto-nitida">
+              <img src="paisaje 3.jpg" alt="paisaje 3">
+            </div>
+            <div class="tarjeta-foto-nitida">
+              <img src="paisaje 4.jpg" alt="paisaje 4">
             </div>
           </div>
         </div>
