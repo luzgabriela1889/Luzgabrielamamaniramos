@@ -25,14 +25,11 @@ body {
   position: relative;
 }
 
-/* =========================================
-   IMAGEN DE FONDO Y CAPA DE LEGIBILIDAD
-   ========================================= */
 .fondo-imagen {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-image: url('Portada%20espacial.avif'); /* Apunta a tu archivo exacto */
+  background-image: url('Portada%20espacial.avif'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,9 +55,6 @@ body {
   display: flex;
 }
 
-/* =========================================
-   PORTADA PRINCIPAL (IZQUIERDA Y DERECHA)
-   ========================================= */
 .portada-layout {
   align-items: center;
   justify-content: space-between;
@@ -76,15 +70,14 @@ body {
   gap: 2.2rem;
 }
 
-/* Óvalo con bordes difuminados y máscara de degradado radial */
 .contenedor-perfil {
   width: 175px;
-  height: 215px; /* Proporción ovalada vertical */
+  height: 215px; 
   min-width: 175px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  /* Difumina gradualmente los bordes usando una máscara radial */
+
   -webkit-mask-image: radial-gradient(ellipse at center, black 52%, transparent 74%);
   mask-image: radial-gradient(ellipse at center, black 52%, transparent 74%);
   filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.3));
@@ -133,9 +126,6 @@ body {
   color: transparent;
 }
 
-/* =========================================
-   MENÚ DERECHO (8 SECCIONES INTERACTIVAS)
-   ========================================= */
 .lado-derecho {
   flex: 0.85;
   max-width: 440px;
@@ -206,9 +196,6 @@ body {
   color: var(--acento-cian);
 }
 
-/* =========================================
-   VISTA DE CADA PESTAÑA INTERIOR
-   ========================================= */
 .vista-pestana {
   align-items: center;
   justify-content: center;
@@ -318,8 +305,6 @@ body {
   gap: 1rem;
   flex-wrap: wrap;
 }
-
-/* Adaptación para celulares */
 @media (max-width: 960px) {
   .portada-layout {
     flex-direction: column;
