@@ -594,26 +594,6 @@
       border-bottom: none;
     }
 
-    .lista-juegos {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      margin-top: 0.6rem;
-    }
-
-    .lista-juegos li {
-      background: rgba(13, 21, 39, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 14px;
-      padding: 0.95rem 1.15rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
     @media (max-width: 960px) {
       .portada-layout {
         flex-direction: column;
@@ -710,7 +690,7 @@
     <aside class="lado-derecho" aria-label="Menú de secciones">
       <div class="cabecera-menu">
         <p class="titulo-menu">Explorar pestañas</p>
-        <span class="contador-sectores">07 SECTORES</span>
+        <span class="contador-sectores">06 SECTORES</span>
       </div>
       <div class="lista-botones">
         <button type="button" class="btn-seccion" onclick="abrirPestana('sobre-mi', 'Sector 01')">
@@ -728,23 +708,18 @@
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('videojuegos', 'Sector 04')">
-          <span><span class="btn-numero">04</span> Videojuegos favoritos</span>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sector 04')">
+          <span><span class="btn-numero">04</span> Vida académica</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('vida-academica', 'Sector 05')">
-          <span><span class="btn-numero">05</span> Vida académica</span>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('suenos-proyectos', 'Sector 05')">
+          <span><span class="btn-numero">05</span> Sueños y proyectos</span>
           <span class="btn-flecha">→</span>
         </button>
 
-        <button type="button" class="btn-seccion" onclick="abrirPestana('suenos-proyectos', 'Sector 06')">
-          <span><span class="btn-numero">06</span> Sueños y proyectos</span>
-          <span class="btn-flecha">→</span>
-        </button>
-
-        <button type="button" class="btn-seccion" onclick="abrirPestana('redes-contactos', 'Sector 07')">
-          <span><span class="btn-numero">07</span> Redes y contactos</span>
+        <button type="button" class="btn-seccion" onclick="abrirPestana('redes-contactos', 'Sector 06')">
+          <span><span class="btn-numero">06</span> Redes y contactos</span>
           <span class="btn-flecha">→</span>
         </button>
       </div>
@@ -926,39 +901,19 @@
         </div>
       </div>
 
-      <!-- 4. Videojuegos favoritos -->
-      <div id="pestana-videojuegos" class="pestana-contenido">
-        <h2>Videojuegos favoritos</h2>
-        <p>Algunos de mis videojuegos favoritos y sus páginas oficiales:</p>
-        <ul class="lista-juegos">
-          <li>
-            <strong>Hollow Knight</strong>
-            <a href="https://www.hollowknight.com/" target="_blank" rel="noopener noreferrer">Sitio oficial →</a>
-          </li>
-          <li>
-            <strong>Left 4 Dead</strong>
-            <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank" rel="noopener noreferrer">Página en Steam →</a>
-          </li>
-          <li>
-            <strong>World of Warcraft</strong>
-            <a href="https://worldofwarcraft.blizzard.com/" target="_blank" rel="noopener noreferrer">Sitio oficial →</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 5. Vida académica -->
+      <!-- 4. Vida académica -->
       <div id="pestana-vida-academica" class="pestana-contenido">
         <h2>Vida académica</h2>
         <p>Aquí puedes compartir tu información académica.</p>
       </div>
 
-      <!-- 6. Sueños y proyectos -->
+      <!-- 5. Sueños y proyectos -->
       <div id="pestana-suenos-proyectos" class="pestana-contenido">
         <h2>Sueños y proyectos</h2>
         <p>Aquí puedes compartir tus sueños y proyectos.</p>
       </div>
 
-      <!-- 7. Redes y contactos -->
+      <!-- 6. Redes y contactos -->
       <div id="pestana-redes-contactos" class="pestana-contenido">
         <h2>Redes y contactos</h2>
         <p>GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
