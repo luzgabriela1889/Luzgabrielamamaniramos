@@ -541,10 +541,31 @@
        ========================================= */
     #pestana-musica p,
     #pestana-libros p,
-    #pestana-vida-academica p {
+    #pestana-vida-academica p,
+    #pestana-redes-contactos p {
       color: var(--texto-secundario);
       font-size: 0.98rem;
       line-height: 1.72;
+    }
+
+    .apartado-companeros {
+      margin-top: 1.4rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .apartado-companeros h3 {
+      font-size: 1.15rem;
+      color: var(--acento-menta);
+      margin-bottom: 0.65rem;
+    }
+
+    .lista-companeros {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
     }
 
     .galeria-musica {
@@ -965,7 +986,20 @@
       <!-- 6. Redes y contactos -->
       <div id="pestana-redes-contactos" class="pestana-contenido">
         <h2>Redes y contactos</h2>
-        <p>GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a></p>
+        <p>
+          LinkedIn: <a href="https://www.linkedin.com/in/luz-gabriela-mamani-ramos-791277436/" target="_blank" rel="noopener noreferrer">linkedin.com/in/luz-gabriela-mamani-ramos-791277436</a>
+          <br>
+          Correo electrónico: <a href="mailto:luz.mamani.ramos@ucsp.edu.pe">luz.mamani.ramos@ucsp.edu.pe</a>
+          <br>
+          GitHub: <a href="https://github.com/luzgabriela1889" target="_blank" rel="noopener noreferrer">github.com/luzgabriela1889</a>
+        </p>
+
+        <div class="apartado-companeros">
+          <h3>Mis compañeros:</h3>
+          <ul class="lista-companeros" id="lista-companeros">
+            <!-- Añade aquí los enlaces de tus compañeros -->
+          </ul>
+        </div>
       </div>
     </div>
   </section>
