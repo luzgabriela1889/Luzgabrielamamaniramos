@@ -540,7 +540,8 @@
        SECCIÓN 2: GALERÍA DE MÚSICA Y SECCIÓN 3: LIBROS
        ========================================= */
     #pestana-musica p,
-    #pestana-libros p {
+    #pestana-libros p,
+    #pestana-vida-academica p {
       color: var(--texto-secundario);
       font-size: 0.98rem;
       line-height: 1.72;
@@ -557,6 +558,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+      margin-top: 1.35rem;
+    }
+
+    .galeria-academica {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.95rem;
       margin-top: 1.35rem;
     }
 
@@ -579,6 +587,14 @@
 
     .galeria-libros .tarjeta-artista img {
       height: 195px;
+    }
+
+    .galeria-academica .tarjeta-foto-nitida {
+      height: 175px;
+    }
+
+    .galeria-academica .tarjeta-foto-nitida img {
+      height: 175px;
     }
 
     .nombre-artista {
@@ -634,7 +650,8 @@
       }
 
       .galeria-musica,
-      .galeria-libros {
+      .galeria-libros,
+      .galeria-academica {
         grid-template-columns: repeat(3, 1fr);
       }
     }
@@ -649,7 +666,8 @@
       }
 
       .galeria-musica,
-      .galeria-libros {
+      .galeria-libros,
+      .galeria-academica {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -904,7 +922,24 @@
       <!-- 4. Vida académica -->
       <div id="pestana-vida-academica" class="pestana-contenido">
         <h2>Vida académica</h2>
-        <p>Aquí puedes compartir tu información académica.</p>
+        <p>
+          Actualmente curso el cuarto semestre de Contabilidad en la Universidad Católica San Pablo, en Arequipa. Suelo destacar por mi capacidad de adaptarme casi a cualquier entorno y por el compromiso con lo que se me encomienda, cualidades que me llevaron a obtener el primer puesto en el segundo y tercer semestre de mi promoción. Este año también participé como edecán en el congreso de contadores celebrado en Arequipa, y a lo largo de mi formación he ganado algunos concursos de matemáticas y música.
+        </p>
+
+        <div class="galeria-academica">
+          <div class="tarjeta-foto-nitida">
+            <img src="congreso.jpeg" alt="">
+          </div>
+          <div class="tarjeta-foto-nitida">
+            <img src="Premio.jpeg" alt="">
+          </div>
+          <div class="tarjeta-foto-nitida">
+            <img src="semestre.jpeg" alt="">
+          </div>
+          <div class="tarjeta-foto-nitida">
+            <img src="UCSP.jpeg" alt="">
+          </div>
+        </div>
       </div>
 
       <!-- 5. Sueños y proyectos -->
