@@ -39,9 +39,6 @@
       position: relative;
     }
 
-    /* =========================================
-       FONDO CON TU IMAGEN + ATMÓSFERA ESPACIAL
-       ========================================= */
     .fondo-imagen {
       position: fixed;
       inset: 0;
@@ -122,7 +119,7 @@
       to { transform: translateY(-50%) rotate(360deg); }
     }
 
-    /* Vistas */
+
     .vista {
       display: none;
       min-height: 100vh;
@@ -132,10 +129,7 @@
     .vista.activa {
       display: flex;
     }
-
-    /* =========================================
-       PORTADA
-       ========================================= */
+    
     .portada-layout {
       align-items: center;
       justify-content: space-between;
@@ -346,9 +340,7 @@
       color: var(--acento-cian);
     }
 
-    /* =========================================
-       VISTA DE PESTAÑA CENTRADA
-       ========================================= */
+  
     .vista-pestana {
       align-items: center;
       justify-content: center;
@@ -448,9 +440,7 @@
       z-index: 2;
     }
 
-    /* =========================================
-       SECCIÓN 1: LATERALES ORDENADOS Y SIMÉTRICOS
-       ========================================= */
+  
     .layout-sobre-mi-ordenado {
       display: flex;
       flex-direction: column;
@@ -537,9 +527,6 @@
       border-bottom-color: #7dd3fc;
     }
 
-    /* =========================================
-       SECCIÓN 2: GALERÍA DE MÚSICA Y SECCIÓN 3: LIBROS
-       ========================================= */
     #pestana-musica p,
     #pestana-libros p,
     #pestana-vida-academica p,
@@ -701,9 +688,6 @@
   <div class="fondo-espacial" aria-hidden="true"></div>
   <div class="anillo-orbital" aria-hidden="true"></div>
 
-  <!-- =========================================
-       PORTADA PRINCIPAL
-       ========================================= -->
   <section id="vista-portada" class="vista portada-layout activa">
     <div class="lado-izquierdo">
       <div class="contenedor-perfil">
@@ -765,10 +749,7 @@
       </div>
     </aside>
   </section>
-
-  <!-- =========================================
-       VISTA DE CADA PESTAÑA INTERIOR
-       ========================================= -->
+  
   <section id="vista-pestana" class="vista vista-pestana">
     <div class="caja-pestana">
       <div class="barra-superior">
@@ -794,7 +775,6 @@
             </div>
           </div>
 
-          <!-- Centro: 2 imágenes a la izquierda, biografía al centro, 2 imágenes a la derecha -->
           <div class="cuerpo-central-con-lados">
             <div class="columna-fotos-lado">
               <div class="tarjeta-foto-nitida">
@@ -830,7 +810,6 @@
             </div>
           </div>
 
-          <!-- Fila inferior: 3 imágenes -->
           <div class="fila-cuadricula-3">
             <div class="tarjeta-foto-nitida">
               <img src="animal%202.jpg" alt="animal 2">
@@ -845,7 +824,6 @@
         </div>
       </div>
 
-      <!-- 2. Música favorita -->
       <div id="pestana-musica" class="pestana-contenido">
         <h2>Música favorita</h2>
         <p>
@@ -896,7 +874,6 @@
         </div>
       </div>
 
-      <!-- 3. Libros favoritos -->
       <div id="pestana-libros" class="pestana-contenido">
         <h2>Libros favoritos</h2>
         <p>Siento una especial predilección por la literatura existencial, psicológica y reflexiva, con autores como Fiódor Dostoyevski, Franz Kafka, Albert Camus, Jean-Paul Sartre, Osamu Dazai, Ernesto Sabato, Emil Cioran, George Orwell y José María Arguedas. Estos son sus libros:</p>
@@ -941,7 +918,6 @@
         </div>
       </div>
 
-      <!-- 4. Vida académica -->
       <div id="pestana-vida-academica" class="pestana-contenido">
         <h2>Vida académica</h2>
         <p>
@@ -978,13 +954,11 @@
         </div>
       </div>
 
-      <!-- 5. Sueños y proyectos -->
       <div id="pestana-suenos-proyectos" class="pestana-contenido">
         <h2>Sueños y proyectos</h2>
         <p>Me proyecto consolidándome como una excelente profesional y llevando la empresa de mis padres a escalas mayores mediante una gestión ordenada y sostenible. Busco seguir fortaleciendo mi autonomía, asumir retos que impulsen mi crecimiento continuo y explorar nuevas oportunidades y destinos en el camino, conservando siempre un espacio de equilibrio y serenidad personal.</p>
       </div>
 
-      <!-- 6. Redes y contactos -->
       <div id="pestana-redes-contactos" class="pestana-contenido">
         <h2>Redes y contactos</h2>
         <p>
@@ -998,7 +972,7 @@
         <div class="apartado-companeros">
           <h3>Mis compañeros:</h3>
           <ul class="lista-companeros" id="lista-companeros">
-            <!-- Añade aquí los enlaces de tus compañeros -->
+ 
           </ul>
         </div>
       </div>
