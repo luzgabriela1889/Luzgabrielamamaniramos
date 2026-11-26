@@ -1,25 +1,15 @@
-# Página Web Personal — Luz Gabriela Mamani Ramos
+# Página web personal - Luz Gabriela Mamani Ramos
 
-Sitio web personal desarrollado como proyecto académico para el curso de **Introducción al Pensamiento Computacional** en la **Universidad Católica San Pablo (UCSP)**, Arequipa, Perú.
+Esta es mi página web personal, creada para el curso de Introducción al Pensamiento Computacional de la Universidad Católica San Pablo (UCSP).
 
-## 🌐 Ver página en vivo
-🔗 [https://luzgabriela1889.github.io/Luzgabrielamamaniramos/](https://luzgabriela1889.github.io/Luzgabrielamamaniramos/)
+Enlace a la página: https://luzgabriela1889.github.io/Luzgabrielamamaniramos/
 
-## 📂 Estructura del sitio
-La página está organizada en 6 sectores principales:
-1. **Sobre mí (Biografía):** origen, familia, formación escolar y etapa universitaria en Arequipa.
-2. **Música favorita:** selección de artistas y géneros que acompañan mi día a día.
-3. **Libros favoritos:** obras de literatura existencial, psicológica y reflexiva.
-4. **Vida académica:** trayectoria universitaria en Contabilidad, logros, reconocimientos y docentes.
-5. **Sueños y proyectos:** metas profesionales y personales a futuro.
-6. **Redes y contactos:** enlaces de contacto directo y directorio de compañeros.
+## Contenido
+* Sobre mí: un poco de mi historia, mi familia y mi etapa universitaria en Arequipa.
+* Música favorita: artistas y canciones que suelo escuchar.
+* Libros favoritos: algunos de los libros y autores que más me gustan.
+* Vida académica: mi carrera de Contabilidad en la UCSP y los profesores de los que aprendí.
+* Sueños y proyectos: metas que tengo a futuro.
+* Redes y contactos: mi correo, LinkedIn y enlaces a las páginas de mis compañeros.
 
-## 🛠️ Tecnologías utilizadas
-* **HTML5** para la estructura semántica y metadatos SEO.
-* **CSS3** para el diseño responsivo, efectos visuales y estética espacial.
-* **JavaScript** para la navegación interactiva entre sectores.
-* **GitHub Pages** para el alojamiento y publicación del sitio.
-
----
-**Autora:** Luz Gabriela Mamani Ramos  
-**Contacto:** luz.mamani.ramos@ucsp.edu.pe
+Hecho con HTML, CSS y JavaScript básico, y publicado con GitHub Pages.
